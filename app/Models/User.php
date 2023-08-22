@@ -21,6 +21,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'document_number',
+        'document_type_id',
+        'phone_number',
     ];
 
     /**
@@ -42,4 +45,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the document type that belongs to the user.
+     */
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class);
+    }
 }
