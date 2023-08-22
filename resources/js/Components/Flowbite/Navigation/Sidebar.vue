@@ -10,7 +10,7 @@
             <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
                 <NavLink href="/admin/users" text="Usuarios" icon="fa-solid fa-users" />
                 <NavLinkDropdown text="Configuración" icon="fa-solid fa-gear"
-                    :childs="[{ name: 'Tipos de Clientes', href: '/child1' }, { name: 'Tipos de Documentos', href: '/child2' }]" />
+                    :childs="[{ name: 'Tipos de Clientes', href: '/admin/customer_types' }, { name: 'Tipos de Documentos', href: '/admin/document_types' }]" />
             </ul>
         </div>
         <div class="absolute bottom-0 left-0 justify-center p-4 space-x-4 w-full lg:flex bg-white dark:bg-gray-800 z-20">

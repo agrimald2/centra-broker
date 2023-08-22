@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\DocumentTypesController;
+use App\Http\Controllers\Admin\CustomerTypesController;
 use Inertia\Inertia;
 
 /*
@@ -38,5 +40,7 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/users', UsersController::class);    
+    Route::resource('/document_types', DocumentTypesController::class);    
+    Route::resource('/customer_types', CustomerTypesController::class);    
 });
 require __DIR__.'/auth.php';
