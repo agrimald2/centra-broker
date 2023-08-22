@@ -4,7 +4,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
 <template>
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
-        <div class="shadow-md sm:rounded-lg relative overflow-x-auto">
+        <div class="shadow-md sm:rounded-lg relative">
             <div class="px-2 flex items-center justify-between py-4 bg-white dark:bg-gray-800">
                 <!-- Search by Name and Document Number-->
                 <div class="flex items-center">
@@ -43,88 +43,86 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                 </div>
                 <button type="button" @click="showModal('createCustomer')"
                     class="text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
-                    Nuevo Cliente
+                    <span class="hidden md:flex"> Nuevo Cliente </span>
                     <i class="ml-2 fa-solid fa-user-plus font-xl"></i>
                 </button>
             </div>
-            <table v-if="customers != ''" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            #
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nombre
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Documento
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Información
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Status
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Accción
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(customer, index) in customers.data"
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4 font-bold text-lg">
-                            {{ index + 1 }}
-                        </td>
-                        <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                            <img src="https://i.ibb.co/Y8MbCRj/igor.jpg" alt=""
-                                class="h-10 w-10 rounded-full border-2 border-blue-600">
-                            <div class="pl-3">
-                                <div class="text-base font-semibold">{{ customer.name }}</div>
-                                <div class="font-normal text-gray-500">{{ customer.email }}</div>
-                            </div>
-                        </th>
-                        <td class="px-6 py-4">
-                            {{ customer.document_type ? customer.document_type.name : '' }}
-                            <br>
-                            {{ customer.document_number }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ customer.address }}
-                            <br>
-                            <a :href="'https://wa.me/51' + customer.phone_number">{{ customer.phone_number }}</a>
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ customer.customer_type.name }}
-                            <div class="flex items-center" v-if="!customer.deleted_at">
-                                <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Activo
-                            </div>
-                            <div class="flex items-center" v-else>
-                                <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Eliminado
-                            </div>
-                        </td>
-                        <td class="px-6 py-4">
-                            <i @click="showModal('editCustomer' + customer.id)"
-                                class="fa-solid fa-square-pen text-3xl text-yellow-500 cursor-pointer"></i>
-                            <Edit :id="'editCustomer' + customer.id" :document_types="document_types"
-                                :customer_types="customer_types" :customer="customer" />
-                            <i @click="deleteCustomer(customer.id)"
-                                class="fa-solid fa-square-xmark text-3xl text-red-500 cursor-pointer ml-2"></i>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div role="status" class="flex justify-center" v-else>
-                <svg aria-hidden="true" class="w-24 h-24 mr-2 mt-5 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
-                    viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-                        fill="currentColor" />
-                    <path
-                        d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-                        fill="currentFill" />
-                </svg>
-                <span class="sr-only">Loading...</span>
+            <div class="overflow-x-auto">
+                <table v-if="customers != ''" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Nombre
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Documento
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Información
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Accción
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(customer, index) in customers.data"
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="row"
+                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                <img src="https://i.ibb.co/Y8MbCRj/igor.jpg" alt=""
+                                    class="h-10 w-10 rounded-full border-2 border-blue-600">
+                                <div class="pl-3">
+                                    <div class="text-base font-semibold">{{ customer.name }}</div>
+                                    <div class="font-normal text-gray-500  hidden sm:flex">{{ customer.email }}</div>
+                                </div>
+                            </th>
+                            <td class="px-6 py-4">
+                                {{ customer.document_type ? customer.document_type.name : '' }}
+                                <br>
+                                {{ customer.document_number }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ customer.address }}
+                                <br>
+                                <a :href="'https://wa.me/51' + customer.phone_number">{{ customer.phone_number }}</a>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ customer.customer_type.name }}
+                                <div class="flex items-center" v-if="!customer.deleted_at">
+                                    <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div> Activo
+                                </div>
+                                <div class="flex items-center" v-else>
+                                    <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Eliminado
+                                </div>
+                            </td>
+                            <td class="px-6 py-4">
+                                <i @click="showModal('editCustomer' + customer.id)"
+                                    class="fa-solid fa-square-pen text-3xl text-yellow-500 cursor-pointer ml-2"></i>
+                                <Edit :id="'editCustomer' + customer.id" :document_types="document_types"
+                                    :customer_types="customer_types" :customer="customer" />
+                                <i @click="deleteCustomer(customer.id)"
+                                    class="fa-solid fa-square-xmark text-3xl text-red-500 cursor-pointer ml-2"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div role="status" class="flex justify-center" v-else>
+                    <svg aria-hidden="true"
+                        class="w-24 h-24 mr-2 mt-5 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                        viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                            fill="currentColor" />
+                        <path
+                            d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                            fill="currentFill" />
+                    </svg>
+                    <span class="sr-only">Loading...</span>
+                </div>
             </div>
             <nav class="flex items-center justify-between p-4" aria-label="Table navigation">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">

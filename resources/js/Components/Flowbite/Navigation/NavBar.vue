@@ -7,7 +7,7 @@
           class="hidden p-2 mr-3 text-gray-600 rounded cursor-pointer lg:inline hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
           <i class="fa-solid fa-bars"></i>
         </button>
-        <button
+        <button @click="$emit('toggle-sidebar')"
           class="lg:hidden p-2 mr-3 text-gray-600 rounded cursor-pointer lg:inline hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
           <i class="fa-solid fa-bars"></i>
         </button>
