@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
             'document_type_id' => 1,
             'document_number' => '77035606',
             'phone_number' => '934094501',
-            'password' => Hash::make('password'), // Recuerda cambiar esto por una contraseña segura
+            'password' => Hash::make('password'),
         ]);
     }
 }
