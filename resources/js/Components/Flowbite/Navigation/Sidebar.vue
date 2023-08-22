@@ -3,7 +3,7 @@
         class="slide-in-left fixed top-0 left-0 z-40 w-64 h-screen pt-14 transition-transform -translate-x-full bg-white border-r border-gray-200 md:translate-x-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
             <ul class="space-y-2">
-                <NavLink href="" text="Hola" icon="fa-solid fa-gear" />
+                <NavLink href="/admin/customers" text="Clientes" icon="fa-solid fa-user-tie" />
                 <NavLinkDropdown text="Prueba" icon="fa-solid fa-gear"
                     :childs="[{ name: 'Child1', href: '/child1' }, { name: 'Child2', href: '/child2' }]" />
             </ul>

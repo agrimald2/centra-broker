@@ -14,7 +14,7 @@ class CreateCustomersTable extends Migration
             $table->string('email')->unique();
             $table->string('address');
             $table->string('phone_number')->nullable();
-            $table->string('document_number')->nullable();
+            $table->string('document_number')->nullable()->unique();
             $table->unsignedBigInteger('document_type_id')->nullable();
             $table->unsignedBigInteger('customer_type_id')->nullable();
             $table->timestamps();

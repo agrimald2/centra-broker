@@ -19,7 +19,6 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::with('documentType')->withTrashed()->paginate(15);
-        $pagination = User::with('documentType')->withTrashed()->paginate(1);
         $document_types = DocumentType::all();    
         $breadcrumbs = [["name" => "Usuarios", "href" => "/admin/users"]];
         return Inertia::render('Admin/Users/Index', ['users' => $users, 'document_types' => $document_types, 'breadcrumbs' => $breadcrumbs]);
@@ -66,7 +65,7 @@ class UsersController extends Controller
 
         $user = User::withTrashed()->findOrFail($id);
         $user->update($validatedData);
-        // Undelete User
+        // Undelete
         $user->deleted_at = null;
         $user->save();
         return;

@@ -44,7 +44,7 @@ class DocumentTypesController extends Controller
 
         $document_type = DocumentType::withTrashed()->findOrFail($id);
         $document_type->update($validatedData);
-        // Undelete User
+        // Undelete
         $document_type->deleted_at = null;
         $document_type->save();
         return;

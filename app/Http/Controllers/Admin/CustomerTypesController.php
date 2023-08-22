@@ -44,7 +44,7 @@ class CustomerTypesController extends Controller
 
         $customer_type = CustomerType::withTrashed()->findOrFail($id);
         $customer_type->update($validatedData);
-        // Undelete User
+        // Undelete
         $customer_type->deleted_at = null;
         $customer_type->save();
         return;
