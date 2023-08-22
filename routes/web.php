@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\UsersController;
 use Inertia\Inertia;
 
 /*
@@ -35,4 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::prefix('admin')->middleware('auth')->group(function () {
+    Route::resource('/users', UsersController::class);    
+});
 require __DIR__.'/auth.php';
