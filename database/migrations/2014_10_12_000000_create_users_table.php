@@ -18,10 +18,11 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->string('document_number');
-            $table->unsignedBigInteger('document_type_id');
-            $table->string('phone_number');
+            $table->string('document_number')->nullable();
+            $table->unsignedBigInteger('document_type_id')->nullable();
+            $table->string('phone_number')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
