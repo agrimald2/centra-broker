@@ -29,4 +29,9 @@ class Customer extends Model
     {
         return $this->belongsTo(CustomerType::class);
     }
+    
+    public function insurancePolicyData()
+    {
+        return $this->hasMany(InsurancePolicyData::class);
+    }
 }

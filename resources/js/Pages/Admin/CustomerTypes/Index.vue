@@ -1,7 +1,9 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Head } from '@inertiajs/vue3';
 </script>
 <template>
+    <Head title="Tipos de Clientes" />
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
         <div class="shadow-md sm:rounded-lg relative">
@@ -17,7 +19,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Name
+                                Nombre
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Status
@@ -32,7 +34,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                <i class="fa-solid fa-passport text-3xl text-indigo-600"></i>
+                                <i class="fa-solid fa-person-military-to-person text-3xl text-indigo-600"></i>
                                 <div class="pl-3">
                                     <div class="text-base font-semibold">{{ customer_type.name }}</div>
                                 </div>

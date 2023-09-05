@@ -1,7 +1,9 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Head } from '@inertiajs/vue3';
 </script>
 <template>
+    <Head title="Usuarios" />
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
         <div class="shadow-md sm:rounded-lg relative">
@@ -13,11 +15,11 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Name
+                                Nombre
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Documento

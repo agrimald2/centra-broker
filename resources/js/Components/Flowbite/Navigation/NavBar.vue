@@ -15,6 +15,7 @@
           <img src="/logo.png" class="mr-3 h-8" alt="FlowBite Logo" />
         </a>
       </div>
+      <p class="text-md font-bold">Administrador Principal</p>
     </div>
   </nav>
 </template>

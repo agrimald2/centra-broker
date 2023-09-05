@@ -16,6 +16,13 @@ class DatabaseSeeder extends Seeder
             CustomerTypesTableSeeder::class,
             UsersTableSeeder::class,
             CustomersTableSeeder::class,
+            InsuranceCompaniesTableSeeder::class,
+            InsurancePoliciesStatusesTableSeeder::class,
+            AssetsTypeTableSeeder::class,
+            AssetsTypesAttributesTableSeeder::class,
+            //InsurancePolicyTableSeeder::class,
+            //InsurancePolicyPeopleTableSeeder::class,
+            GeneralSettingsTableSeeder::class,
         ]);
     }
 }

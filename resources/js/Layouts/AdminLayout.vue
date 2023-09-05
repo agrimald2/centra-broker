@@ -31,3 +31,14 @@ export default {
   },
 };
 </script>
+<style>
+.no-display {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .table {
+    width: max-content;
+  }
+}
+</style>

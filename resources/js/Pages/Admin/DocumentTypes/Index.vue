@@ -1,7 +1,9 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Head } from '@inertiajs/vue3';
 </script>
 <template>
+    <Head title="Tipos de Documentos" />
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
         <div class="shadow-md sm:rounded-lg relative">
@@ -17,7 +19,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
-                                Name
+                                Nombre
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Status

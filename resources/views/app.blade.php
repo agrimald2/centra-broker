@@ -18,6 +18,7 @@
         <!-- Flowbite -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/2780e63ff4.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     </head>
     <body class="font-sans antialiased">
         @inertia

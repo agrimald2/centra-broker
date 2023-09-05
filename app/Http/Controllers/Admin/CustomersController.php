@@ -23,7 +23,7 @@ class CustomersController extends Controller
         $customers = Customer::with('documentType')->with('customerType')->withTrashed()->paginate(20);
         $document_types = DocumentType::all();    
         $customer_types = CustomerType::all();    
-        $breadcrumbs = [["name" => "Cliente", "href" => "/admin/customers"]];
+        $breadcrumbs = [["name" => "Clientes", "href" => "/admin/customers"]];
         return Inertia::render('Admin/Customers/Index', ['customers' => $customers, 'document_types' => $document_types,'customer_types' => $customer_types, 'breadcrumbs' => $breadcrumbs]);
     }
 
@@ -45,6 +45,7 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
+        Log::warning("Request-> ". $request->name);
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string',
@@ -55,8 +56,9 @@ class CustomersController extends Controller
             'phone_number' => 'nullable|string',
         ]);
 
+        Log::debug($validatedData);
         $customer = Customer::create($validatedData);
-        return;
+        return response()->json($customer);
     }
 
     /**

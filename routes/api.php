@@ -24,4 +24,7 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/customer_types', [UtilitiesController::class, 'getCustomerTypes']);
 Route::get('/document_types', [UtilitiesController::class, 'getDocumentTypes']);
+Route::get('/insurance_companies', [UtilitiesController::class, 'getInsuranceCompanies']);
+Route::get('/assets_types', [UtilitiesController::class, 'getAssetTypes']);
+Route::get('/insurance_policy_test', [UtilitiesController::class, 'getInsurancePolicyTest']);
 Route::get('/customer', [UtilitiesController::class, 'getCustomers']);

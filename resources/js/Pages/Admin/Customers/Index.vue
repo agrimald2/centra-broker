@@ -1,7 +1,9 @@
 <script setup>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Head } from '@inertiajs/vue3';
 </script>
 <template>
+    <Head title="Clientes" />
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
         <div class="shadow-md sm:rounded-lg relative">
@@ -20,7 +22,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Nombre | N° Doc" required>
                     </div>
-                    <!-- @todo Customer and Doc type filter 
+                    <!-- @todo Customer and Doc type filter
                         <div class="ml-2">
                             Filter by customer_type
                             <select id="customerTypes" v-model="customerTypeFilter"
@@ -48,7 +50,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table v-if="customers != ''" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table v-if="customers != ''" class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -145,7 +147,7 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
         </div>
         <Create :id="'createCustomer'" :document_types="document_types" :customer_types="customer_types" />
     </AdminLayout>
-</template> 
+</template>
 <script>
 import Create from './Create.vue';
 import Edit from './Edit.vue';
