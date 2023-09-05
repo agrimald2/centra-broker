@@ -21,7 +21,7 @@ class Asset extends Model
 
     public function assetType()
     {
-        return $this->belongsTo(AssetType::class);
+        return $this->belongsTo(AssetsType::class);
     }
 
     public function insurancePolicyData()

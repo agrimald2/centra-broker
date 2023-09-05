@@ -79,8 +79,11 @@ class InsurancePoliciesController extends Controller
     }
 
     public function show($id){
-
-        $insurancePolicy = InsurancePolicy::with(['latestInsurancePolicyData', 'latestInsurancePolicyData.insuranceCompany', 'latestInsurancePolicyData.customer', 'latestInsurancePolicyData.customer.documentType', 'latestInsurancePolicyData.customer.customerType', 'latestInsurancePolicyData.insurancePolicyPeople', 'latestInsurancePolicyData.assets', 'latestInsurancePolicyData.assets.assetsAttributesData'])->find($id);
+        $insurance_policies_data = InsurancePolicyData::where('insurance_policy_id', $id)->with(['insuranceCompany', 'customer', 'customer.documentType', 'customer.customerType', 'insurancePolicyPeople', 'assets', 'assets.assetsAttributesData'])->get();
+        foreach ($insurance_policies_data as $policyData) {
+            $policyData->totalComission = $policyData->totalComission();
+        }
+        $insurancePolicy = InsurancePolicy::with(['latestInsurancePolicyData', 'latestInsurancePolicyData.insurancePolicy','latestInsurancePolicyData.insuranceCompany', 'latestInsurancePolicyData.customer', 'latestInsurancePolicyData.customer.documentType', 'latestInsurancePolicyData.customer.customerType', 'latestInsurancePolicyData.insurancePolicyPeople', 'latestInsurancePolicyData.assets', 'latestInsurancePolicyData.assets.assetsAttributesData'])->find($id);
         if($insurancePolicy){
             $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData;
             $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
@@ -91,17 +94,27 @@ class InsurancePoliciesController extends Controller
             $insurancePolicy->totalComission = $totalComission; // Add total comission to the insurancePolicy array
             $latestInsurancePolicyData->totalComission = $totalComission; // Add total comission to the insurancePolicyData array
             $people = $latestInsurancePolicyData->insurancePolicyPeople;
+            $insurance_billing_contact = $people->where('type_id', 1)->first(); // Get the insurance billing contact where type is equal to 1
+            $insuranced_people = $people->where('type_id', 2)->all(); // Get the array of people where type_id is equal to 2
             $assets = $latestInsurancePolicyData->assets;
+            foreach ($assets as $asset) {
+                $assetType = $asset->assetType;
+                $attributes = $assetType->attributes;
+            }
+            
             foreach ($assets as $asset) {
                 $assetAttributesData = $asset->assetsAttributesData;
                 $netPremium = $asset->netPremium();
                 $netComercial = $asset->netComercial();
                 $netTotal = $asset->netTotal();
             }
-            $breadcrumbs = [["name" => "Pólizas de seguro", "href" => "/admin/insurance_policies"], ["name" => "Póliza N° ".$insurancePolicy->id, "href" => "/admin/insurance_policies/show/".$insurancePolicy->id]];
+            $breadcrumbs = [["name" => "Pólizas de seguro", "href" => "/admin/insurance_policies"], ["name" => "Póliza N° ".$insurancePolicy->number, "href" => "/admin/insurance_policies/show/".$insurancePolicy->id]];
             return Inertia::render('Admin/InsurancePolicies/Show', [
                 'breadcrumbs' => $breadcrumbs,
-                'insurancePolicy' => $insurancePolicy
+                'insurancePolicy' => $insurancePolicy,
+                'insurance_billing_contact' => $insurance_billing_contact,
+                'insuranced_people' => $insuranced_people,
+                'insurance_policies_data' => $insurance_policies_data
             ]);
         } else {
             return response()->json(['message' => 'Insurance Policy not found'], 404);

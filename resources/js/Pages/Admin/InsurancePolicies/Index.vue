@@ -96,7 +96,9 @@ import { Head } from '@inertiajs/vue3';
                                 {{ insurancePolicy.latest_insurance_policy_data.end_date }}
                             </td>
                             <td class="px-6 py-4">
-                                <i class="fa-solid fa-eye text-3xl text-indigo-600 cursor-pointer ml-2"></i>
+                                <a :href="'/admin/insurance_policies/show/'+insurancePolicy.id">
+                                    <i class="fa-solid fa-eye text-3xl text-indigo-600 cursor-pointer ml-2"></i>
+                                </a>
                                 <i class="fa-solid fa-square-pen text-3xl text-yellow-500 cursor-pointer ml-2"></i>
                             </td>
                         </tr>
@@ -118,11 +120,11 @@ import { Head } from '@inertiajs/vue3';
             </div>
             <nav class="flex items-center justify-between p-4" aria-label="Table navigation">
                 <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    <span class="font-semibold text-gray-900 dark:text-white">MI a MOR</span> de
-                    <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                    <span class="font-semibold text-gray-900 dark:text-white">1 a 10</span> de
+                    <span class="font-semibold text-gray-900 dark:text-white">100</span>
                 </span>
                 <ul class="inline-flex -space-x-px text-sm h-8">
-                    <li v-for="(link, index) in 10" :key="index">
+                    <li v-for="(link, index) in 5" :key="index">
                         <a :href="link.url"
                             class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                             v-if="link.url" v-html="link.label">
