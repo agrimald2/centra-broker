@@ -96,7 +96,7 @@ import { Head } from '@inertiajs/vue3';
                                 {{ insurancePolicy.latest_insurance_policy_data.end_date }}
                             </td>
                             <td class="px-6 py-4">
-                                <a :href="'/admin/insurance_policies/show/'+insurancePolicy.id">
+                                <a :href="'/admin/insurance_policies/show/' + insurancePolicy.id">
                                     <i class="fa-solid fa-eye text-3xl text-indigo-600 cursor-pointer ml-2"></i>
                                 </a>
                                 <i class="fa-solid fa-square-pen text-3xl text-yellow-500 cursor-pointer ml-2"></i>
@@ -148,6 +148,7 @@ export default {
     data() {
         return {
             insurancePolicies: null,
+            search: null,
         };
     },
     methods: {
@@ -160,7 +161,7 @@ export default {
             try {
                 const response = await axios.get('/admin/insurance_policies/filter', {
                     params: {
-
+                        search: this.search,
                     },
                 });
                 this.insurancePolicies = response.data;

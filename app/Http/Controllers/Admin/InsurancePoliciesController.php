@@ -141,6 +141,34 @@ class InsurancePoliciesController extends Controller
         // Return a response
         return response()->json(['message' => 'Insurance Policy created successfully']);
     }
+
+    public function addNewEndorse(Request $request)
+    {
+        $id = $request->id; 
+        $policyData = $request->policyData;
+        $insurancePeople = $request->insurancePeople;
+        $assets = $request->assets;
+        // Find the InsurancePolicy by id
+        $insurancePolicy = InsurancePolicy::find($id);
+        
+        // Check if the InsurancePolicy exists
+        if(!$insurancePolicy) {
+            return response()->json(['message' => 'Insurance Policy not found'], 404);
+        }
+        
+        // Create the InsurancePolicyData
+        $insurancePolicyData = $this->createInsurancePolicyData($insurancePolicy, $policyData);
+        
+        // Create the InsurancePolicyPeople
+        $this->createInsurancePolicyPeople($insurancePolicyData, $insurancePeople);
+        
+        // Create the Assets
+        $this->createAssets($insurancePolicyData, $assets);
+        
+        // Return a response
+        return response()->json(['message' => 'Policy data, insurance people and assets added successfully']);
+    }
+    
     
     private function createInsurancePolicy($data)
     {

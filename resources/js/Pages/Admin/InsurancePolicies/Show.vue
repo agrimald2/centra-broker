@@ -284,8 +284,9 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             class="ml-2 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm p-1 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
                             <i class="fa-solid fa-add text-md"></i>
                         </a>
-                        <AddEndorse :id="'AddEndorse' + insurance_policy.number" :insurancePolicy="insurancePolicy.latest_insurance_policy_data"
-                            :insurance_billing_contact="insurance_billing_contact" :insuranced_people="insuranced_people">
+                        <AddEndorse :id="'AddEndorse' + insurance_policy.number"
+                            :insurancePolicy="insurancePolicy.latest_insurance_policy_data"
+                            :insurance_billing_contact="insurance_billing_contact" :insuranced_people="insuranced_people" />
                     </div>
                     <p class="mt-1 text-sm leading-6 text-gray-600">
                         Endosos pertenecientes a esta póliza
@@ -408,9 +409,25 @@ export default {
             modal.classList.remove('slide-out-bck-center');
             modal.classList.remove('no-display');
         },
+        formatActualAssets() {
+            const formattedAssets = this.insurance_policy.insurance_policy_data.assets.map(asset => {
+                let formattedAsset = {
+                    "asset_type_id": asset.asset_type_id,
+                    "asset_type_name": asset.asset_type.name,
+                    "insured_amount": parseFloat(asset.insured_amount),
+                    "vigency_date": asset.vigency_date,
+                    "assets_attributes_data": {}
+                };
+                asset.assets_attributes_data.forEach(attribute => {
+                    formattedAsset.assets_attributes_data[attribute.id] = attribute.value;
+                });
+                return formattedAsset;
+            });
+            this.insurance_policy.insurance_policy_data.assets = formattedAssets;
+        }
     },
     mounted() {
-
+        this.formatActualAssets();
     },
 };
 </script>

@@ -61,6 +61,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/filter', [InsurancePoliciesController::class, 'insurancePoliciesFilter'])->name('insurance_policy.filter');
         Route::get('/create', [InsurancePoliciesController::class, 'create'])->name('insurance_policy.create');
         Route::post('/store', [InsurancePoliciesController::class, 'store']);
+        Route::post('/addNewEndorse', [InsurancePoliciesController::class, 'addNewEndorse']);
         Route::get('/show/{id}', [InsurancePoliciesController::class, 'show']);
         
     });
