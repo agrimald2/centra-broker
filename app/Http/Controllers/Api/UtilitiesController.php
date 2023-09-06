@@ -52,7 +52,6 @@ class UtilitiesController extends Controller
     public function getInsurancePolicyTest(){
         $insurancePolicy = InsurancePolicy::find(2);
         $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData; 
-        Log::debug('Total Comission: '.$latestInsurancePolicyData->totalComission());
         $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
         $customer = $latestInsurancePolicyData->customer;
         $people = $latestInsurancePolicyData->insurancePolicyPeople;
@@ -62,9 +61,6 @@ class UtilitiesController extends Controller
             $netPremium = $asset->netPremium();
             $netComercial = $asset->netComercial();
             $netTotal = $asset->netTotal();
-            Log::info('Net Premium: '.$netPremium);
-            Log::info('Net Comercial: '.$netComercial);
-            Log::info('Net Total: '.$netTotal);
         }
         return response()->json($insurancePolicy);
     }   

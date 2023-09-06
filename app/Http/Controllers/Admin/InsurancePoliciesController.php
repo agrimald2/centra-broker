@@ -220,7 +220,6 @@ class InsurancePoliciesController extends Controller
     private function createAssets($insurancePolicyData, $assets)
     {
         foreach ($assets as $assetData) {
-            Log::warning($assetData);
             $asset = Asset::create([
                 'insurance_policy_data_id' => $insurancePolicyData->id,
                 'asset_type_id' => $assetData['asset_type_id'],
