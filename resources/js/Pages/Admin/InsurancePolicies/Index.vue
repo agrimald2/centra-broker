@@ -18,7 +18,7 @@ import { Head } from '@inertiajs/vue3';
                                     d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
                             </svg>
                         </div>
-                        <input type="text" id="simple-search" v-model="search"
+                        <input type="text" id="simple-search" v-model="search" @input="fetchInsurancePolicies"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Nombre | N° Doc" required>
                     </div>
@@ -46,6 +46,9 @@ import { Head } from '@inertiajs/vue3';
                                 N° Activos
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Prima Neta
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Comisión Total
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -70,8 +73,7 @@ import { Head } from '@inertiajs/vue3';
                             <td class="px-6 py-4">
                                 {{ insurancePolicy.latest_insurance_policy_data.customer.name }}
                                 <br>
-                                {{ insurancePolicy.latest_insurance_policy_data.customer.document_type.name }} | {{
-                                    insurancePolicy.latest_insurance_policy_data.customer.document_number }}
+                                {{ insurancePolicy.latest_insurance_policy_data.customer.document_type.name }} | {{ insurancePolicy.latest_insurance_policy_data.customer.document_number }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ insurancePolicy.latest_insurance_policy_data.insurance_company.name }}
@@ -86,7 +88,10 @@ import { Head } from '@inertiajs/vue3';
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                $ {{ insurancePolicy.latest_insurance_policy_data.totalComission.toFixed(2) }}
+                                $ {{ insurancePolicy.latest_insurance_policy_data.netPremium.toFixed(2) }}
+                            </td>
+                            <td class="px-6 py-4">
+                                $ {{ insurancePolicy.latest_insurance_policy_data.totalComission.toFixed(2) }} <br>  % {{ insurancePolicy.latest_insurance_policy_data.comission }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ insurancePolicy.latest_insurance_policy_data.start_date }}
@@ -149,6 +154,7 @@ export default {
         return {
             insurancePolicies: null,
             search: null,
+            loading: false,
         };
     },
     methods: {
@@ -158,6 +164,7 @@ export default {
             modal.classList.remove('no-display');
         },
         async fetchInsurancePolicies() {
+            this.loading = true;
             try {
                 const response = await axios.get('/admin/insurance_policies/filter', {
                     params: {
@@ -168,13 +175,19 @@ export default {
             } catch (error) {
                 console.log(error);
             }
+            this.loading = false;
         },
     },
     mounted() {
         this.fetchInsurancePolicies();
     },
     watch: {
-
+        search: {
+            handler() {
+                this.fetchInsurancePolicies();
+            },
+            immediate: true,
+        },
     },
 };
 </script>

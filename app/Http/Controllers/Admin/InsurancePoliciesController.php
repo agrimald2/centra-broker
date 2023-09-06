@@ -45,8 +45,16 @@ class InsurancePoliciesController extends Controller
         return Inertia::render('Admin/InsurancePolicies/Index', ['breadcrumbs' => $breadcrumbs, 'insurancePolicies' => $insurancePolicies]);
     }
 
-    public function insurancePoliciesFilter(){
-        $insurancePolicies = InsurancePolicy::with(['latestInsurancePolicyData', 'latestInsurancePolicyData.insuranceCompany', 'latestInsurancePolicyData.customer', 'latestInsurancePolicyData.customer.documentType', 'latestInsurancePolicyData.customer.customerType', 'latestInsurancePolicyData.insurancePolicyPeople', 'latestInsurancePolicyData.assets', 'latestInsurancePolicyData.assets.assetsAttributesData'])->get();
+    public function insurancePoliciesFilter(Request $request){
+        $search = $request->search;
+        $insurancePolicies = InsurancePolicy::with(['latestInsurancePolicyData', 'latestInsurancePolicyData.insuranceCompany', 'latestInsurancePolicyData.customer', 'latestInsurancePolicyData.customer.documentType', 'latestInsurancePolicyData.customer.customerType', 'latestInsurancePolicyData.insurancePolicyPeople', 'latestInsurancePolicyData.assets', 'latestInsurancePolicyData.assets.assetsAttributesData'])
+            ->where(function ($query) use ($search) {
+                $query->whereHas('latestInsurancePolicyData.customer', function ($query) use ($search) {
+                    $query->where('name', 'like', '%' . $search . '%')
+                          ->orWhere('document_number', 'like', '%' . $search . '%');
+                })
+                ->orWhere('number', 'like', '%' . $search . '%'); // Include results where search is equal to insurance_policy number
+            })->get();
         foreach ($insurancePolicies as $insurancePolicy) {
             $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData;
             $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
@@ -54,8 +62,11 @@ class InsurancePoliciesController extends Controller
             $contacts = $customer->documentType;
             $addresses = $customer->customerType;
             $totalComission = $latestInsurancePolicyData->totalComission();
+            $netPremium = $latestInsurancePolicyData->netPremiumTotal();
             $insurancePolicy->totalComission = $totalComission; // Add total comission to the insurancePolicy array
+            $insurancePolicy->netPremium = $netPremium; // Add total comission to the insurancePolicy array
             $latestInsurancePolicyData->totalComission = $totalComission; // Add total comission to the insurancePolicyData array
+            $latestInsurancePolicyData->netPremium = $netPremium; // Add total comission to the insurancePolicyData array
             $people = $latestInsurancePolicyData->insurancePolicyPeople;
             $assets = $latestInsurancePolicyData->assets;
             foreach ($assets as $asset) {

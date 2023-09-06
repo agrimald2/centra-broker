@@ -41,7 +41,7 @@ class Asset extends Model
         */
         return $this->insured_amount * ($this->insurancePolicyData->risk_rate/100);
     }
-    
+
     public function netComercial()
     {
         /**
