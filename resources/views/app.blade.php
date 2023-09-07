@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
-        <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="https://broker-centra.fisioacasa.pe/favicon.ico" type="image/x-icon">
         
         <!-- Metatags -->
         <title>Centra Broker - Sistema</title>
@@ -17,14 +17,14 @@
         <meta property="og:url" content="https://metatags.io/" />
         <meta property="og:title" content="Centra Broker - Sistema" />
         <meta property="og:description" content="Sistema de gestión de Pólizas y Siniestros para Broker de seguros. Desarrollado por e-Pask." />
-        <meta property="og:image" content="/public/favicon.ico" />
+        <meta property="og:image" content="https://broker-centra.fisioacasa.pe/logo.png" />
 
         <!-- Twitter -->
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://metatags.io/" />
         <meta property="twitter:title" content="Centra Broker - Sistema" />
         <meta property="twitter:description" content="Sistema de gestión de Pólizas y Siniestros para Broker de seguros. Desarrollado por e-Pask." />
-        <meta property="twitter:image" content="/public/favicon.ico" />
+        <meta property="twitter:image" content="https://broker-centra.fisioacasa.pe/logo.png" />
 
         <!-- iOS -->
         <meta name="apple-mobile-web-app-capable" content="yes">
