@@ -1,0 +1,1 @@
+import{_ as t}from"./_plugin-vue_export-helper-c27b6911.js";const o={components:{},props:["",""],data(){return{}},methods:{},mounted(){}};function e(n,r,s,c,p,a){return null}const d=t(o,[["render",e]]);export{d as default};
