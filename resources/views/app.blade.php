@@ -5,7 +5,30 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+        
+        <!-- Metatags -->
+        <title>Centra Broker - Sistema</title>
+        <meta name="title" content="Centra Broker - Sistema" />
+        <meta name="description" content="Sistema de gestión de Pólizas y Siniestros para Broker de seguros. Desarrollado por e-Pask." />
 
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://metatags.io/" />
+        <meta property="og:title" content="Centra Broker - Sistema" />
+        <meta property="og:description" content="Sistema de gestión de Pólizas y Siniestros para Broker de seguros. Desarrollado por e-Pask." />
+        <meta property="og:image" content="/public/favicon.ico" />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://metatags.io/" />
+        <meta property="twitter:title" content="Centra Broker - Sistema" />
+        <meta property="twitter:description" content="Sistema de gestión de Pólizas y Siniestros para Broker de seguros. Desarrollado por e-Pask." />
+        <meta property="twitter:image" content="/public/favicon.ico" />
+
+        <!-- iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
