@@ -104,7 +104,6 @@ import { Head } from '@inertiajs/vue3';
                                 <a :href="'/admin/insurance_policies/show/' + insurancePolicy.id">
                                     <i class="fa-solid fa-eye text-3xl text-indigo-600 cursor-pointer ml-2"></i>
                                 </a>
-                                <i class="fa-solid fa-square-pen text-3xl text-yellow-500 cursor-pointer ml-2"></i>
                             </td>
                         </tr>
                     </tbody>

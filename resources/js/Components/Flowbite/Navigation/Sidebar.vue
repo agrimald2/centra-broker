@@ -6,9 +6,9 @@
                 <NavLink href="/admin/dashboard" text="Dashboard" icon="fa-solid fa-dashboard" />
                 <NavLink href="/admin/customers" text="Clientes" icon="fa-solid fa-user-tie" />
                 <NavLinkDropdown text="Pólizas" icon="fa-solid fa-gear"
-                    :childs="[{ name: 'Polizas de seguros', href: '/admin/insurance_policies' }, { name: 'Activos', href: '/child2' }]" />
+                    :childs="[{ name: 'Polizas de seguros', href: '/admin/insurance_policies' }, { name: 'Activos', href: '/' }]" />
                 <NavLinkDropdown text="Siniestros" icon="fa-solid fa-car-burst"
-                    :childs="[{ name: 'Registro de siniestros ', href: '/child1' }, { name: 'Activos', href: '/child2' }]" />
+                    :childs="[{ name: 'Registro de siniestros ', href: '/' }, { name: 'Activos', href: '/' }]" />
             </ul>
             <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200">
                 <NavLink href="/admin/users" text="Usuarios" icon="fa-solid fa-users" />
