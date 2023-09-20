@@ -80,7 +80,7 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                             </div>
                         </th>
                         <td class="px-6 py-4">
-                            {{ result_asset[0].asset.insured_amount }}<
+                            {{ result_asset[0].asset.insured_amount }}
                         </td>
                         <td class="px-6 py-4">
                             {{ result_asset[0].asset.vigency_date }}
