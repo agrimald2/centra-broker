@@ -111,6 +111,7 @@ class InsurancePoliciesController extends Controller
             foreach ($assets as $asset) {
                 $assetType = $asset->assetType;
                 $attributes = $assetType->attributes;
+                $incidents = $asset->incidents; // Added incidents relationship
             }
             
             foreach ($assets as $asset) {
@@ -118,6 +119,7 @@ class InsurancePoliciesController extends Controller
                 $netPremium = $asset->netPremium();
                 $netComercial = $asset->netComercial();
                 $netTotal = $asset->netTotal();
+                $incidents = $asset->incidents; // Added incidents relationship
             }
             $breadcrumbs = [["name" => "Pólizas de seguro", "href" => "/admin/insurance_policies"], ["name" => "Póliza N° ".$insurancePolicy->number, "href" => "/admin/insurance_policies/show/".$insurancePolicy->id]];
             return Inertia::render('Admin/InsurancePolicies/Show', [
@@ -125,7 +127,8 @@ class InsurancePoliciesController extends Controller
                 'insurancePolicy' => $insurancePolicy,
                 'insurance_billing_contact' => $insurance_billing_contact,
                 'insuranced_people' => $insuranced_people,
-                'insurance_policies_data' => $insurance_policies_data
+                'insurance_policies_data' => $insurance_policies_data,
+                'assets' => $assets
             ]);
         } else {
             return response()->json(['message' => 'Insurance Policy not found'], 404);

@@ -10,7 +10,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
         <div class="relative max-w-xl max-h-full m-auto min-w-fit">
             <div class="relative bg-gray-50 rounded-lg shadow-2xl ">
                 <button type="button" @click="hideModal"
-                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center  ">
                     <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -28,7 +28,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                             Contratante
                                             <!-- Add People Modal-->
                                             <button type="button" @click="showModal('E-AddCustomer')"
-                                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                                 <i class="fa-solid fa-user-plus font-xl"></i>
                                             </button>
                                             <AddCustomer :id="'E-AddCustomer'" @customer-added="handleNewCustomer" />
@@ -45,7 +45,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                             Responsable de pago
                                             <!-- Add People Modal-->
                                             <button type="button" @click="showModal('E-AddBillingContact')"
-                                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                                 <i class="fa-solid fa-user-plus font-xl"></i>
                                             </button>
                                             <AddPeopleToInsurance :id="'E-AddBillingContact'" :type="1"
@@ -63,7 +63,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                         <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">
                                             Persona(s) Asegurada
                                             <button type="button" @click="showModal('E-AddPeople')"
-                                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                                 <i class="fa-solid fa-address-card font-xl"></i>
                                             </button>
                                             <AddPeopleToInsurance :id="'E-AddPeople'" :type="2"
@@ -81,15 +81,15 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                                         </div>
                                                         <div class="flex-1 min-w-0">
                                                             <p
-                                                                class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                                class="text-sm font-medium text-gray-900 truncate ">
                                                                 {{ people_in_insurance.name }}
                                                             </p>
-                                                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                            <p class="text-sm text-gray-500 truncate ">
                                                                 {{ people_in_insurance.document_number }}
                                                             </p>
                                                         </div>
                                                         <div
-                                                            class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                                            class="inline-flex items-center text-base font-semibold text-gray-900 ">
                                                             <i @click="removeInsurancedPeople(people_in_insurance)"
                                                                 class="fa-solid fa-square-xmark text-3xl text-red-500 cursor-pointer ml-2"></i>
                                                         </div>
@@ -103,7 +103,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                                             Companía de Seguros
                                             <button type="button" 
-                                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                                 <i class="fa-solid fa-tag font-xl"></i>
                                             </button>
                                         </label>
@@ -122,7 +122,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                             <div class="relative">
                                                 <div
                                                     class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
                                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                         viewBox="0 0 20 20">
                                                         <path
@@ -131,7 +131,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                                 </div>
                                                 <input type="date"
                                                     v-model="insurance_policy.insurance_policy_data.start_date"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="Select date">
                                             </div>
                                         </div>
@@ -145,7 +145,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                             <div class="relative">
                                                 <div
                                                     class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                                    <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
                                                         xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                         viewBox="0 0 20 20">
                                                         <path
@@ -153,7 +153,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                                     </svg>
                                                 </div>
                                                 <input type="date" v-model="insurance_policy.insurance_policy_data.end_date"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                     placeholder="Select date">
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                                             Tipo de comisión
                                             <button type="button" 
-                                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                                 <i class="fa-solid fa-tag font-xl"></i>
                                             </button>
                                         </label>
@@ -185,7 +185,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                                             Comisión
                                             <button type="button" 
-                                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                                 <i class="fa-solid fa-tag font-xl"></i>
                                             </button>
                                         </label>
@@ -245,7 +245,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                     Lista de activos Asegurados
                                 </p>
                                 <button type="button" @click="showModal('E-NewAsset')"
-                                    class="mt-1 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="mt-1 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     Añadir Activo
                                     <i class="ml-2 fa-solid fa-plus font-xl"></i>
                                 </button>
@@ -255,9 +255,9 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                         <div v-for="asset in insurance_policy.insurance_policy_data.assets"
                                             class="sm:col-span-1 md:col-span-2 col-span-4">
                                             <div
-                                                class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                                class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
                                                 <button type="button" @click="removeAsset(asset)"
-                                                    class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                                    class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
                                                     <i class="fa-solid fa-kaaba mr-2"></i>
                                                     {{ asset.asset_type_name }} | {{ asset.insured_amount }}
                                                     <br>
@@ -274,7 +274,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                     Imágenes, PDF's, Excel y cualquier tipo de documento que esté relacionado a la poliza
                                 </p>
                                 <button type="button" @click="showModal('E-AddFile')"
-                                    class="mt-1 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="mt-1 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     Añadir Archivo
                                     <i class="ml-2 fa-solid fa-plus font-xl"></i>
                                 </button>
@@ -284,9 +284,9 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                         <div v-for="file in insurance_policy.insurance_policy_data.files"
                                             class="sm:col-span-4 md:col-span-2 col-span-4">
                                             <div
-                                                class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                                class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
                                                 <button type="button" @click="removeFile(file)"
-                                                    class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                                    class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
                                                     <i class="fa-solid fa-file mr-2"></i>
                                                     <span>{{ file.name.length > 10 ? file.name.slice(0, 10) + '...' :
                                                         file.name
@@ -302,7 +302,7 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                     </form>
                     <div class="space-y-6">
                         <button type="button" @click="submit"
-                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 uppercase">Añadir Endoso</button>
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center    uppercase">Añadir Endoso</button>
                     </div>
                 </div>
             </div>

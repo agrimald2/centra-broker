@@ -43,7 +43,7 @@
         <script src="https://kit.fontawesome.com/2780e63ff4.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased"">
         @inertia
     
     

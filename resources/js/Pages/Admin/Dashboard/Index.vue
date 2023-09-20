@@ -8,7 +8,7 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
     <Head title="Dashboard" />
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
-        <p class="font-bold text-xl">Dashboard de estadísticas</p>
+        <p class="font-bold text-xl ">Dashboard de estadísticas</p>
         <GridExample />
     </AdminLayout>
 </template>

@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\AssetsTypesController;
 use App\Http\Controllers\Admin\CustomerTypesController;
 use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\InsurancePoliciesController;
+use App\Http\Controllers\Admin\IncidentController;
+use App\Http\Controllers\Admin\AssetController;
 use Inertia\Inertia;
 
 /*
@@ -59,6 +61,19 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('/addNewEndorse', [InsurancePoliciesController::class, 'addNewEndorse']);
         Route::get('/show/{id}', [InsurancePoliciesController::class, 'show']);
         
+    });
+
+    Route::prefix('incidents')->group(function () {
+        Route::get('/', [IncidentController::class, 'index'])->name('incidents.index');
+        Route::get('/create/{asset_id}', [IncidentController::class, 'create'])->name('incidents.create');
+        Route::post('/store', [IncidentController::class, 'store'])->name('incidents.store');
+        Route::get('/filter', [IncidentController::class, 'filter'])->name('incidents.filter');
+        Route::get('/show/{id}', [IncidentController::class, 'show'])->name('incidents.show');
+    });
+
+    Route::prefix('assets')->group(function () {
+        Route::get('/search_index', [AssetController::class, 'search'])->name('assets.search.index');
+        Route::get('/search_assets', [AssetController::class, 'getAssetByAttributeValue'])->name('assets.search');
     });
    
 });

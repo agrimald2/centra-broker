@@ -1,5 +1,5 @@
 <template>
-  <div class="antialiased bg-gray-50 dark:bg-gray-900">
+  <div class="antialiased bg-gray-50 ">
     <NavBar @toggle-sidebar="sidebarVisible = !sidebarVisible" />
     <Sidebar v-if="sidebarVisible" />
     <main :class="`p-4 h-auto pt-20 ${sidebarVisible ? 'md:ml-64' : 'md:ml-0'}`">

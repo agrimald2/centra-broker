@@ -1,7 +1,7 @@
 <template>
     <li>
         <button type="button" @click="toggleDropdown"
-            class="flex items-center p-2 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+            class="flex items-center p-2 w-full text-base text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100  ">
             <i :class="icon + ' ' + color + ' ' + textsize"></i>
             <span class="ml-3">{{ text }}</span>
             <svg aria-hidden="true" class="ml-auto w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -14,7 +14,7 @@
         <ul :class="{ 'hidden': !isActive }" class="py-2 space-y-2">
             <li v-for="child in childs" :key="child.name">
                 <a :href="child.href"
-                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                    class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100  ">
                     {{ child.name }}</a>
             </li>
         </ul>

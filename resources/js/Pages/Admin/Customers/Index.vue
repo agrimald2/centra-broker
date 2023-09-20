@@ -7,26 +7,26 @@ import { Head } from '@inertiajs/vue3';
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
         <div class="shadow-md sm:rounded-lg relative">
-            <div class="px-2 flex items-center justify-between py-4 bg-white dark:bg-gray-800">
+            <div class="px-2 flex items-center justify-between py-4 bg-white ">
                 <!-- Search by Name and Document Number-->
                 <div class="flex items-center">
                     <div class="relative w-full">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                            <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
                             </svg>
                         </div>
                         <input type="text" id="simple-search" v-model="search"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Nombre | N° Doc" required>
                     </div>
                     <!-- @todo Customer and Doc type filter
                         <div class="ml-2">
                             Filter by customer_type
                             <select id="customerTypes" v-model="customerTypeFilter"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="">T. Cliente</option>
                                 <option v-for="customer_type in customer_types" :value="customer_type.id" class="text-gray-900">
                                     {{ customer_type.name }}</option>
@@ -35,7 +35,7 @@ import { Head } from '@inertiajs/vue3';
                         <div class="ml-2">
                             Filter by document_type
                             <select id="documentTypes" v-model="documentTypeFilter"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option value="">T. Doc</option>
                                 <option v-for="document_type in document_types" :value="document_type.id" class="text-gray-900">
                                     {{ document_type.name }}</option>
@@ -44,14 +44,14 @@ import { Head } from '@inertiajs/vue3';
                     -->
                 </div>
                 <button type="button" @click="showModal('createCustomer')"
-                    class="text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                    class="text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                     <span class="hidden md:flex"> Nuevo Cliente </span>
                     <i class="ml-2 fa-solid fa-user-plus font-xl"></i>
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table v-if="customers != ''" class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table v-if="customers != ''" class="w-full text-sm text-left text-gray-500  table">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 Nombre
@@ -72,9 +72,9 @@ import { Head } from '@inertiajs/vue3';
                     </thead>
                     <tbody>
                         <tr v-for="(customer, index) in customers.data"
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            class="bg-white border-b   hover:bg-gray-50 ">
                             <th scope="row"
-                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
                                 <img src="https://i.ibb.co/Y8MbCRj/igor.jpg" alt=""
                                     class="h-10 w-10 rounded-full border-2 border-blue-600">
                                 <div class="pl-3">
@@ -127,19 +127,19 @@ import { Head } from '@inertiajs/vue3';
                 </div>
             </div>
             <nav class="flex items-center justify-between p-4" aria-label="Table navigation">
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    <span class="font-semibold text-gray-900 dark:text-white">{{ customers.from }} a {{
+                <span class="text-sm font-normal text-gray-500 ">
+                    <span class="font-semibold text-gray-900 ">{{ customers.from }} a {{
                         customers.to }}</span> de
-                    <span class="font-semibold text-gray-900 dark:text-white">{{ customers.total }}</span>
+                    <span class="font-semibold text-gray-900 ">{{ customers.total }}</span>
                 </span>
                 <ul class="inline-flex -space-x-px text-sm h-8">
                     <li v-for="(link, index) in customers.links" :key="index">
                         <a :href="link.url"
-                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700     "
                             v-if="link.url" v-html="link.label">
                         </a>
                         <span v-else v-html="link.label"
-                            class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">
+                            class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700   ">
                         </span>
                     </li>
                 </ul>

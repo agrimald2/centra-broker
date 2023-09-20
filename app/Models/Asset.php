@@ -34,12 +34,32 @@ class Asset extends Model
         return $this->hasMany(AssetsAttributesData::class);
     }
 
+    
+    public function customer()
+    {
+        if ($this->insurancePolicyData) {
+            return $this->insurancePolicyData()->orderBy('created_at', 'desc')->first()->customer;
+        }
+        return null; // or any other default value
+    }
+        
+    public function insurancePolicy()
+    {
+        if ($this->insurancePolicyData) {
+            return $this->insurancePolicyData()->orderBy('created_at', 'desc')->first()->insurancePolicy;
+        }
+        return null; // or any other default value
+    }
+
     public function netPremium()
     {
         /**
          * Insuranced_amount * risk_rate
         */
-        return $this->insured_amount * ($this->insurancePolicyData->risk_rate/100);
+        if ($this->insurancePolicyData) {
+            return $this->insured_amount * ($this->insurancePolicyData->risk_rate/100);
+        }
+        return 0; // or any other default value
     }
 
     public function netComercial()
@@ -59,5 +79,10 @@ class Asset extends Model
         $igv = GeneralSetting::first()->igv;
         $netComercial = $this->netComercial();
         return $netComercial + ($netComercial * ($igv/100));
+    }
+
+    public function incidents()
+    {
+        return $this->hasMany(Incident::class);
     }
 }

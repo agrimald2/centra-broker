@@ -19,7 +19,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                                 Número de póliza
                                 <button type="button" disabled
-                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     <i class="fa-solid fa-tag font-xl"></i>
                                 </button>
                             </label>
@@ -40,7 +40,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                                 Contratante
                                 <!-- Add People Modal-->
                                 <button type="button"
-                                    class="ml-2 text-white bg-gray-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="ml-2 text-white bg-gray-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     <i class="fa-solid fa-user-plus font-xl"></i>
                                 </button>
                             </label>
@@ -56,7 +56,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                                 Responsable de pago
                                 <!-- Add People Modal-->
                                 <button type="button"
-                                    class="ml-2 text-white bg-gray-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="ml-2 text-white bg-gray-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     <i class="fa-solid fa-user-plus font-xl"></i>
                                 </button>
                             </label>
@@ -72,7 +72,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">
                                 Persona(s) Asegurada
                                 <button type="button"
-                                    class="ml-2 text-white bg-gray-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="ml-2 text-white bg-gray-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     <i class="fa-solid fa-address-card font-xl"></i>
                                 </button>
                             </label>
@@ -86,10 +86,10 @@ import ShowAsset from './Modals/ShowAsset.vue';
                                                     src="https://i.ibb.co/Y8MbCRj/igor.jpg" alt="Neil image">
                                             </div>
                                             <div class="flex-1 min-w-0">
-                                                <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                <p class="text-sm font-medium text-gray-900 truncate ">
                                                     {{ people_in_insurance.name }}
                                                 </p>
-                                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                <p class="text-sm text-gray-500 truncate ">
                                                     {{ people_in_insurance.document_number }}
                                                 </p>
                                             </div>
@@ -103,7 +103,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                                 Companía de Seguros
                                 <button type="button" disabled
-                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     <i class="fa-solid fa-tag font-xl"></i>
                                 </button>
                             </label>
@@ -121,14 +121,14 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             <div class="mt-4">
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                             <path
                                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                         </svg>
                                     </div>
                                     <input type="date" v-model="insurance_policy.insurance_policy_data.start_date" disabled
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Select date">
                                 </div>
                             </div>
@@ -141,14 +141,14 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             <div class="mt-4">
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                        <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                             <path
                                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                                         </svg>
                                     </div>
                                     <input type="date" v-model="insurance_policy.insurance_policy_data.end_date" disabled
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Select date">
                                 </div>
                             </div>
@@ -158,7 +158,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                                 Tipo de comisión
                                 <button type="button" disabled
-                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     <i class="fa-solid fa-tag font-xl"></i>
                                 </button>
                             </label>
@@ -180,7 +180,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                                 Comisión
                                 <button type="button" disabled
-                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                                    class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                     <i class="fa-solid fa-tag font-xl"></i>
                                 </button>
                             </label>
@@ -237,18 +237,18 @@ import ShowAsset from './Modals/ShowAsset.vue';
                     </p>
                     <div class="sm:col-span-3">
                         <div class="mt-2 grid grid-cols-8  gap-y-4">
-                            <div v-for="asset in insurance_policy.insurance_policy_data.assets"
-                                class="sm:col-span-1 md:col-span-2 col-span-4">
-                                <div
-                                    class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                    <button type="button" @click="showModal('Asset-' + asset.id)"
-                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                            <div v-for="(asset, index) in assets" class="sm:col-span-1 md:col-span-2 col-span-4">
+                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
+                                    <button type="button" @click="showModal('Asset-' + index)"
+                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
                                         <i class="fa-solid fa-kaaba mr-2"></i>
-                                        {{ asset.asset_type_name }} | {{ asset.insured_amount }}
+                                        {{ asset.asset_type_name }} | {{ asset.insured_amount }} 
+                                        <span class="relative inline-flex items-center ml-1" v-if="asset.incidents.length > 0"> | <div class="ml-1 h-2.5 w-2.5 rounded-full bg-red-500"></div>S</span>
                                         <br>
                                     </button>
                                 </div>
-                                <ShowAsset :id="'Asset-' + asset.id" :asset="asset" />
+                                <ShowAsset :id="'Asset-' + index" :asset_id="asset.id" :asset="asset"
+                                    :assets_attributes_data="asset.assets_attributes_data" />
                             </div>
                         </div>
                     </div>
@@ -263,10 +263,9 @@ import ShowAsset from './Modals/ShowAsset.vue';
                         <div class="mt-2 grid grid-cols-8 gap-y-4">
                             <div v-for="file in insurance_policy.insurance_policy_data.files"
                                 class="sm:col-span-4 md:col-span-2 col-span-4">
-                                <div
-                                    class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
                                     <button type="button" @click="removeFile(file)"
-                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
                                         <i class="fa-solid fa-file mr-2"></i>
                                         <span>{{ file.name.length > 10 ? file.name.slice(0, 10) + '...' : file.name
                                         }}</span>
@@ -281,7 +280,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                     <div class="flex">
                         <h2 class="text-base font-semibold leading-7 text-gray-900">Endosos</h2>
                         <a @click="showModal('AddEndorse' + insurance_policy.number)"
-                            class="ml-2 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm p-1 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                            class="ml-2 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm p-1 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                             <i class="fa-solid fa-add text-md"></i>
                         </a>
                         <AddEndorse :id="'AddEndorse' + insurance_policy.number"
@@ -292,8 +291,8 @@ import ShowAsset from './Modals/ShowAsset.vue';
                         Endosos pertenecientes a esta póliza
                     </p>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <table class="w-full text-sm text-left text-gray-500  table">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
                                         Fecha
@@ -317,9 +316,8 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             </thead>
                             <tbody>
                                 <tr v-for="endorse in insurance_policies_data"
-                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                    <th scope="row"
-                                        class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    class="bg-white border-b   hover:bg-gray-50 ">
+                                    <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
                                         <div class="">
                                             <div class="text-base font-semibold">{{ new
                                                 Date(endorse.created_at).toLocaleDateString() }}</div>
@@ -355,10 +353,9 @@ import ShowAsset from './Modals/ShowAsset.vue';
                         <div class="mt-2 grid grid-cols-8 gap-y-4">
                             <div v-for="file in insurance_policy.insurance_policy_data.files"
                                 class="sm:col-span-4 md:col-span-2 col-span-4">
-                                <div
-                                    class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
                                     <button type="button" @click="removeFile(file)"
-                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
                                         <i class="fa-solid fa-file mr-2"></i>
                                         <span>{{ file.name.length > 10 ? file.name.slice(0, 10) + '...' : file.name
                                         }}</span>
@@ -378,7 +375,7 @@ export default {
     components: {
         ShowAsset, AddEndorse
     },
-    props: ['breadcrumbs', 'insurancePolicy', 'insurance_billing_contact', 'insuranced_people', 'insurance_policies_data'],
+    props: ['breadcrumbs', 'insurancePolicy', 'insurance_billing_contact', 'insuranced_people', 'insurance_policies_data', 'assets'],
     data() {
         return {
             insurance_policy: {

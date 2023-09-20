@@ -7,16 +7,16 @@ import { Head } from '@inertiajs/vue3';
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
         <div class="shadow-md sm:rounded-lg relative">
-            <div class="px-2 flex items-center justify-between py-4 bg-white dark:bg-gray-800">
+            <div class="px-2 flex items-center justify-between py-4 bg-white ">
                 <button type="button" @click="showModal('createUser')"
-                    class="text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#050708]/40 dark:focus:ring-gray-600 mr-2 mb-2">
+                    class="text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                     Añadir Usuario
                     <i class="ml-2 fa-solid fa-user-plus font-xl"></i>
                 </button>
             </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 table">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <table class="w-full text-sm text-left text-gray-500  table">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                         <tr>
                             <th scope="col" class="px-6 py-3">
                                 Nombre
@@ -34,9 +34,9 @@ import { Head } from '@inertiajs/vue3';
                     </thead>
                     <tbody>
                         <tr v-for="(user, index) in users.data"
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            class="bg-white border-b   hover:bg-gray-50 ">
                             <th scope="row"
-                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
                                 <i class="fa-solid fa-circle-user text-3xl text-indigo-600"></i>
                                 <div class="pl-3">
                                     <div class="text-base font-semibold">{{ user.name }}</div>
@@ -68,19 +68,19 @@ import { Head } from '@inertiajs/vue3';
                 </table>
             </div>
             <nav class="flex items-center justify-between p-4" aria-label="Table navigation">
-                <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                    <span class="font-semibold text-gray-900 dark:text-white">{{ users.from }} a {{
+                <span class="text-sm font-normal text-gray-500 ">
+                    <span class="font-semibold text-gray-900 ">{{ users.from }} a {{
                         users.to }}</span> de
-                    <span class="font-semibold text-gray-900 dark:text-white">{{ users.total }}</span>
+                    <span class="font-semibold text-gray-900 ">{{ users.total }}</span>
                 </span>
                 <ul class="inline-flex -space-x-px text-sm h-8">
                     <li v-for="(link, index) in users.links" :key="index">
                         <a :href="link.url"
-                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700     "
                             v-if="link.url" v-html="link.label">
                         </a>
                         <span v-else v-html="link.label"
-                            class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">
+                            class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700   ">
                         </span>
                     </li>
                 </ul>
