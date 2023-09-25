@@ -85,7 +85,7 @@ class IncidentController extends Controller
     }
 
     public function index(){
-        $breadcrumbs = [["name" => "Listado de Siniestros", "href" => "/admin/insurance_policies"]];
+        $breadcrumbs = [["name" => "Listado de Siniestros", "href" => "/admin/incidents"]];
         return Inertia::render('Admin/Incidents/Index', ['breadcrumbs' => $breadcrumbs]);
     }
 
