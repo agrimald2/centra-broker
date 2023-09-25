@@ -217,11 +217,11 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
                             Conductor
                             <!-- Add People Modal-->
-                            <button type="button" @click="showModal('AddCustomer')"
+                            <button type="button" @click="showModal('CreateDriver')"
                                 class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                 <i class="fa-solid fa-user-plus font-xl"></i>
                             </button>
-                            <AddCustomer :id="'AddCustomer'" @customer-added="handleNewCustomer" />
+                            <CreateDriver :id="'CreateDriver'" @driver-added="handleNewDriver" />
                         </label>
                         <div class="mt-2 bg-white">
                             <v-select v-model="incident.incident_history.driver_id" :options="drivers" required
@@ -287,11 +287,11 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
                             Taller
                             <!-- Add People Modal-->
-                            <button type="button" @click="showModal('AddCustomer')"
+                            <button type="button" @click="showModal('AddWorkShop')"
                                 class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                 <i class="fa-solid fa-user-plus font-xl"></i>
                             </button>
-                            <AddCustomer :id="'AddCustomer'" @customer-added="handleNewCustomer" />
+                            <CreateWorkShop :id="'AddWorkShop'" @workshop-added="handleNewWorkShop" />
                         </label>
                         <div class="mt-2 bg-white">
                             <v-select v-model="incident.incident_history.workshop_id" :options="workshops"
@@ -340,11 +340,11 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
                             Ejecutivo
                             <!-- Add People Modal-->
-                            <button type="button" @click="showModal('AddCustomer')"
+                            <button type="button" @click="showModal('AddExecutive')"
                                 class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                 <i class="fa-solid fa-user-plus font-xl"></i>
                             </button>
-                            <AddCustomer :id="'AddCustomer'" @customer-added="handleNewCustomer" />
+                            <CreateExecutive :id="'AddExecutive'" @executive-added="handleNewExecutive" />
                         </label>
                         <div class="mt-2 bg-white">
                             <v-select v-model="incident.incident_history.executive_id" :options="executives"
@@ -370,10 +370,10 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                                         <v-select v-model="incident.incident_history.bank_id" :options="banks"
                                             :disabled="!incident.incident_history.is_bank_endorsed"
                                             :reduce="bank => bank.id" label="name"></v-select>
-                                        <AddCustomer :id="'AddCustomer'" @customer-added="handleNewCustomer" />
+                                        <CreateBank :id="'AddBank'" @bank-added="handleNewBank" />
                                     </div>
                                     <div class="col-span-2">
-                                        <button type="button" @click="showModal('AddCustomer')"
+                                        <button type="button" @click="showModal('AddBank')"
                                             class="ml-5 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                             <i class="fa-solid fa-user-plus font-xl"></i>
                                         </button>
@@ -401,9 +401,13 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
     </AdminLayout>
 </template>
 <script>
+import CreateDriver from './Modals/CreateDriver.vue'
+import CreateWorkShop from './Modals/CreateWorkShop.vue'
+import CreateExecutive from './Modals/CreateExecutive.vue'
+import CreateBank from './Modals/CreateBank.vue'
 export default {
     components: {
-
+        CreateDriver,CreateWorkShop, CreateExecutive, CreateBank
     },
     props: ['breadcrumbs', 'asset'],
     data() {
@@ -436,6 +440,11 @@ export default {
         };
     },
     methods: {
+        showModal(id) {
+            let modal = document.getElementById(id);
+            modal.classList.remove('slide-out-bck-center');
+            modal.classList.remove('no-display');
+        },
         async submit() {
             try {
                 const response = await axios.post('/admin/incidents/store', this.incident);
@@ -445,6 +454,22 @@ export default {
                 console.log(error);
                 // handle error (e.g., show error message)
             }
+        },
+        handleNewDriver(data) {
+            this.drivers.push(data);
+            this.incident.incident_history.driver_id = data.id;
+        },
+        handleNewWorkShop(data) {
+            this.workshops.push(data);
+            this.incident.incident_history.workshop_id = data.id;
+        },
+        handleNewExecutive(data) {
+            this.executives.push(data);
+            this.incident.incident_history.executive_id = data.id;
+        },
+        handleNewBank(data) {
+            this.banks.push(data);
+            this.incident.incident_history.bank_id = data.id;
         },
         async getDrivers() {
             try {
