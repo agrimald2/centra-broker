@@ -1,0 +1,1 @@
+import{_ as o}from"./_plugin-vue_export-helper-c27b6911.js";import{o as t,c}from"./app-b33c6b3b.js";const e={},r=["src"];function n(s,a){return t(),c("img",{src:"/logo.png",alt:"centra-logo",style:{width:"auto"}},null,8,r)}const i=o(e,[["render",n]]);export{i as A};
