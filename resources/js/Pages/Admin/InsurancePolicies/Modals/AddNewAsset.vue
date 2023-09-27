@@ -12,7 +12,7 @@
                     <span class="sr-only">Close modal</span>
                 </button>
                 <div class="px-6 py-6 lg:px-8">
-                    <h3 class="mb-4 text-xl font-medium text-gray-900 ">Añadir Activo</h3>
+                    <h3 class="mb-4 text-xl font-medium text-gray-900 ">Añadir  </h3>
                     <div class="space-y-6">
                         <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div class="sm:col-span-6">
@@ -103,13 +103,13 @@ import axios from 'axios';
 
 export default {
     components: {},
-    props: ['id'],
+    props: ['id', 'policy_vigency_date'],
     data() {
         return {
             assets_types: [],
             asset_type: null,
             insured_amount: null,
-            vigency_date: null,
+            vigency_date: this.policy_vigency_date,
             assets_attributes_data: {}
         };
     },
@@ -149,6 +149,15 @@ export default {
     },
     mounted() {
         this.getAssetsTypes();
+        this.vigency_date = this.policy_vigency_date;
     },
+    watch: {
+        policy_vigency_date: {
+            immediate: true,
+            handler(newDate) {
+                this.vigency_date = newDate;
+            }
+        }
+    }
 };
 </script>

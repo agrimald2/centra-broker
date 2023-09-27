@@ -67,7 +67,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::post('/store', [InsurancePoliciesController::class, 'store']);
         Route::post('/addNewEndorse', [InsurancePoliciesController::class, 'addNewEndorse']);
         Route::get('/show/{id}', [InsurancePoliciesController::class, 'show']);
-        
+        Route::get('/edit/{id}', [InsurancePoliciesController::class, 'edit']);
+        Route::put('/update/{id}', [InsurancePoliciesController::class, 'update']);        
     });
 
     Route::prefix('incidents')->group(function () {

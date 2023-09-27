@@ -101,8 +101,7 @@ import AddFile from './Modals/AddFile.vue';
                                                     {{ people_in_insurance.document_number }}
                                                 </p>
                                             </div>
-                                            <div
-                                                class="inline-flex items-center text-base font-semibold text-gray-900 ">
+                                            <div class="inline-flex items-center text-base font-semibold text-gray-900 ">
                                                 <i @click="removeInsurancedPeople(people_in_insurance)"
                                                     class="fa-solid fa-square-xmark text-3xl text-red-500 cursor-pointer ml-2"></i>
                                             </div>
@@ -234,7 +233,7 @@ import AddFile from './Modals/AddFile.vue';
                                 <div
                                     class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                                     <span class="flex select-none items-center pl-3 text-gray-700 sm:text-sm">%</span>
-                                    <input type="number" v-model="insurance_policy.insurance_policy_data.risk_rate"
+                                    <input type="text" v-model="insurance_policy.insurance_policy_data.risk_rate"
                                         class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                         placeholder="2.8">
                                 </div>
@@ -253,13 +252,12 @@ import AddFile from './Modals/AddFile.vue';
                         Añadir Activo
                         <i class="ml-2 fa-solid fa-plus font-xl"></i>
                     </button>
-                    <AddNewAsset :id="'NewAsset'" @asset-added="handleNewAsset" />
+                    <AddNewAsset :id="'NewAsset'" @asset-added="handleNewAsset" :policy_vigency_date="insurance_policy.insurance_policy_data.end_date" />
                     <div class="sm:col-span-3">
                         <div class="mt-10 grid grid-cols-8  gap-y-4">
                             <div v-for="asset in insurance_policy.insurance_policy_data.assets"
                                 class="sm:col-span-1 md:col-span-2 col-span-4">
-                                <div
-                                    class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
+                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
                                     <button type="button" @click="removeAsset(asset)"
                                         class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
                                         <i class="fa-solid fa-kaaba mr-2"></i>
@@ -287,8 +285,7 @@ import AddFile from './Modals/AddFile.vue';
                         <div class="mt-10 grid grid-cols-8 gap-y-4">
                             <div v-for="file in insurance_policy.insurance_policy_data.files"
                                 class="sm:col-span-4 md:col-span-2 col-span-4">
-                                <div
-                                    class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
+                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
                                     <button type="button" @click="removeFile(file)"
                                         class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
                                         <i class="fa-solid fa-file mr-2"></i>
@@ -306,7 +303,7 @@ import AddFile from './Modals/AddFile.vue';
                 <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</button>
                 <button type="submit" @click="submit"
                     class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                    Crear
+                    Guardar
                 </button>
             </div>
         </form>
@@ -440,6 +437,17 @@ export default {
     mounted() {
         this.getCustomers();
         this.getInsuranceCompanies();
+    },
+    watch: {
+        'insurance_policy.insurance_policy_data.start_date': function (newStartDate) {
+            console.log("Hola");
+            console.log(newStartDate);
+            if (newStartDate) {
+                let startDate = new Date(newStartDate);
+                startDate.setFullYear(startDate.getFullYear() + 1);
+                this.insurance_policy.insurance_policy_data.end_date = startDate.toISOString().split('T')[0];
+            }
+        }
     },
 };
 </script>
