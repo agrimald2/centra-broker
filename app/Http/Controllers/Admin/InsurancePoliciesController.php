@@ -203,6 +203,7 @@ class InsurancePoliciesController extends Controller
         $this->createAssets($insurancePolicyData, $data['insurance_policy_data']['assets']);
         
         // Redirect to the route named insurance_policy.index
+        Log::debug("A");
         return redirect()->route('insurance_policy.index');
     }
 
@@ -337,7 +338,8 @@ class InsurancePoliciesController extends Controller
                     'insurance_policy_data_id' => $insurancePolicyData->id,
                     'asset_type_id' => $assetData['asset_type_id'],
                     'insured_amount' => $assetData['insured_amount'],
-                    'vigency_date' => $assetData['vigency_date']
+                    'vigency_date' => $assetData['vigency_date'],
+                    'insuranced_people' => $assetData['insuranced_people']
                 ]
             );
             if(isset($assetData['assets_attributes_data'])) {

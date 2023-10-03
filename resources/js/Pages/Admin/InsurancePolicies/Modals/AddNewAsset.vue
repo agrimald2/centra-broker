@@ -13,19 +13,29 @@
                 </button>
                 <div class="px-6 py-6 lg:px-8">
                     <h3 class="mb-4 text-xl font-medium text-gray-900 ">Añadir  </h3>
-                    <div class="space-y-6">
-                        <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                    <div class="space-y-2">
+                        <div class="grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-6">
                             <div class="sm:col-span-6">
                                 <label for="name" class="block mb-2 text-md font-bold text-gray-900 ">
                                     Tipo de activo
                                 </label>
                                 <div class="relative">
                                     <select v-model="this.asset_type"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-md font-bold rounded-lg ring-blue-500 border-blue-500 block w-full p-2.5   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-md font-bold rounded-lg ring-blue-500 border-blue-500 block w-full p-2.5  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                         <option v-for="assets_type in assets_types" :value="assets_type"
                                             class="text-gray-900">
                                             {{ assets_type.name }}</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="sm:col-span-6">
+                                <label for="name" class="block mb-2 text-md font-bold text-gray-900 ">
+                                    Persona Asegurada
+                                </label>
+                                <div class="relative">
+                                    <input type="text" name="number" id="number" autocomplete="number" v-model="this.insuranced_people"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-md font-bold rounded-lg ring-blue-500 border-blue-500 block w-full p-2.5"
+                                        placeholder="Jhon Doe">
                                 </div>
                             </div>
                             <div class="sm:col-span-3">
@@ -77,7 +87,7 @@
                                         </div>
                                         <input :type="attribute.input_type" name="name" id="name"
                                             v-model="assets_attributes_data[attribute.id]"
-                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                             :placeholder="attribute.example">
                                     </div>
                                     <span class="text-sm text-gray-500">
@@ -110,7 +120,8 @@ export default {
             asset_type: null,
             insured_amount: null,
             vigency_date: this.policy_vigency_date,
-            assets_attributes_data: {}
+            assets_attributes_data: {},
+            insuranced_people: null,
         };
     },
     methods: {
@@ -121,7 +132,8 @@ export default {
                     asset_type_name: this.asset_type.name,
                     insured_amount: this.insured_amount,
                     vigency_date: this.vigency_date,
-                    assets_attributes_data: this.assets_attributes_data
+                    assets_attributes_data: this.assets_attributes_data,
+                    insuranced_people: this.insuranced_people,
                 };
                 this.$emit('asset-added', asset);
                 this.hideModal();

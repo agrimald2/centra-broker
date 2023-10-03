@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('asset_type_id');
             $table->decimal('insured_amount', 8, 2);
             $table->date('vigency_date');
+            $table->string('insuranced_people');
             $table->timestamps();
             $table->softDeletes();
         });

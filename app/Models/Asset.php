@@ -16,6 +16,7 @@ class Asset extends Model
         'asset_type_id',
         'insurance_policy_data_id',
         'insured_amount',
+        'insuranced_people',
         'vigency_date',
     ];
 

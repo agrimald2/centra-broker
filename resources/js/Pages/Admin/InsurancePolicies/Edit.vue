@@ -248,7 +248,7 @@ import AddFile from './Modals/AddFile.vue';
             </div>
             <div class="mt-6 flex items-center justify-end gap-x-6">
                 <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</button>
-                <button type="submit" @click="submit"
+                <button type="submit" @click="submit" @click.prevent="submit"
                     class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     Guardar
                 </button>
@@ -290,8 +290,7 @@ export default {
         async submit() {
             try {
                 const response = await axios.put(`/admin/insurance_policies/update/${this.insurancePolicy.id}`, this.insurance_policy);
-                // window.location.href = `/admin/insurance_policies`;
-                // handle success (e.g., show notification, redirect)
+                window.location.href = '/admin/insurance_policies';
             } catch (error) {
                 console.log(error);
                 // handle error (e.g., show error message)
