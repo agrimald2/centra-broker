@@ -116,7 +116,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
 
                         <div class="sm:col-span-2">
                             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                                Fecha de Inicio
+                                Inicio de Vigencia
                             </label>
                             <div class="mt-4">
                                 <div class="relative">
@@ -136,7 +136,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
 
                         <div class="sm:col-span-2">
                             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                                Fecha de Vigencia
+                                Fin de Vigencia
                             </label>
                             <div class="mt-4">
                                 <div class="relative">
@@ -236,21 +236,68 @@ import ShowAsset from './Modals/ShowAsset.vue';
                         Lista de activos Asegurados
                     </p>
                     <div class="sm:col-span-3">
-                        <div class="mt-2 grid grid-cols-8  gap-y-4">
-                            <div v-for="(asset, index) in assets" class="sm:col-span-1 md:col-span-2 col-span-4">
-                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
-                                    <button type="button" @click="showModal('Asset-' + index)"
-                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
-                                        <i class="fa-solid fa-kaaba mr-2"></i>
-                                        {{ asset.asset_type_name }} | {{ asset.insured_amount }} 
-                                        <span class="relative inline-flex items-center ml-1" v-if="asset.incidents.length > 0"> | <div class="ml-1 h-2.5 w-2.5 rounded-full bg-red-500"></div>S</span>
+                        <table class="w-full text-sm text-left text-gray-500  table">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Tipo
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Valor Asegurado
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Fecha de Vigencia
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Atributos
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(asset, index) in assets" class="bg-white border-b hover:bg-gray-50 ">
+                                    <td scope="row" class="px-6 py-4">
+                                        {{ asset.asset_type.name }}
                                         <br>
-                                    </button>
-                                </div>
-                                <ShowAsset :id="'Asset-' + index" :asset_id="asset.id" :asset="asset"
-                                    :assets_attributes_data="asset.assets_attributes_data" />
-                            </div>
-                        </div>
+                                        <span v-if="asset.incidents.length > 0">
+                                            <div class="ml-1 h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ asset.insured_amount }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {{ asset.vigency_date }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <table class="w-full text-sm text-left text-gray-500 table">
+                                            <thead class="text-xs text-gray-700 uppercase bg-gray-100  ">
+                                                <tr>
+                                                    <th scope="col" class="px-6 py-3 text-center"
+                                                        v-for="attribute in asset.asset_type.attributes">
+                                                        {{ attribute.name }}
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="bg-white border-b hover:bg-white">
+                                                    <td class="px-6 py-4"
+                                                        v-for="attributeData in asset.assets_attributes_data">
+                                                        {{ attributeData.value }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <i @click="showModal('Asset-' + index)"
+                                            class="fa-solid fa-eye text-3xl text-blue-500 cursor-pointer ml-2"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

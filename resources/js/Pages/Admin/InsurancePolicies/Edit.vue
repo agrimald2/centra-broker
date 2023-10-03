@@ -74,7 +74,7 @@ import AddFile from './Modals/AddFile.vue';
 
                         <div class="sm:col-span-2">
                             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                                Fecha de Inicio
+                                Inicio de Vigencia
                             </label>
                             <div class="mt-4">
                                 <div class="relative">
@@ -94,7 +94,7 @@ import AddFile from './Modals/AddFile.vue';
 
                         <div class="sm:col-span-2">
                             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                                Fecha de Vigencia
+                                Fin de Vigencia
                             </label>
                             <div class="mt-4">
                                 <div class="relative">

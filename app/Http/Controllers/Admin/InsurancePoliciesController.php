@@ -202,8 +202,8 @@ class InsurancePoliciesController extends Controller
         // Create the Assets
         $this->createAssets($insurancePolicyData, $data['insurance_policy_data']['assets']);
         
-        // Return a response
-        return response()->json(['message' => 'Insurance Policy created successfully']);
+        // Redirect to the route named insurance_policy.index
+        return redirect()->route('insurance_policy.index');
     }
 
     public function update(Request $request, $id)
@@ -241,7 +241,7 @@ class InsurancePoliciesController extends Controller
         }
         
         // Return a response
-        return response()->json(['message' => 'Insurance Policy updated successfully']);
+        return redirect()->route('insurance_policy.index');
     }
 
     private function updateInsurancePolicyData($insurancePolicy, $insurancePolicyData)
