@@ -51,12 +51,13 @@ import AddFile from './Modals/Endorse/AddFile.vue';
                                             <AddPeopleToInsurance :id="'E-AddBillingContact'" :type="1"
                                                 @people-added="handleNewPeople" />
                                         </label>
+                                        <!-- 
                                         <div class="mt-2">
-                                            <!-- Search and Select Customers-->
                                             <input type="text" placeholder="Responsable de pago" 
                                                 v-model="insurance_policy.insurance_policy_data.insurance_policy_billing_contact.name"
                                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                         </div>
+                                        -->
                                     </div>
 
                                     <div class="sm:col-span-2">

@@ -211,18 +211,21 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         </div>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                            Conductor
-                            <!-- Add People Modal-->
-                            <button type="button" @click="showModal('AddCustomer')"
-                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
-                                <i class="fa-solid fa-user-plus font-xl"></i>
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
+                            <button type="button" disabled
+                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
+                                <i class="fa-solid fa-tag font-xl"></i>
                             </button>
-                            <AddCustomer :id="'AddCustomer'" @customer-added="handleNewCustomer" />
+                            Conductor
                         </label>
-                        <div class="mt-2 bg-white">
-                            <v-select v-model="incident.last_incident_history.driver_id" :options="drivers" disabled
-                                :reduce="driver => driver.id" label="name"></v-select>
+                        <div class="mt-2">
+                            <div
+                                class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <!-- Search and Select People-->
+                                <input type="text" name="number" id="number" autocomplete="number" disabled
+                                    v-model="incident.last_incident_history.driver"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
@@ -334,18 +337,21 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         </div>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                            Ejecutivo
-                            <!-- Add People Modal-->
-                            <button type="button" @click="showModal('AddCustomer')"
-                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
-                                <i class="fa-solid fa-user-plus font-xl"></i>
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
+                            <button type="button" disabled
+                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
+                                <i class="fa-solid fa-tag font-xl"></i>
                             </button>
-                            <AddCustomer :id="'AddCustomer'" @customer-added="handleNewCustomer" />
+                            Ejecutivo
                         </label>
-                        <div class="mt-2 bg-white">
-                            <v-select v-model="incident.last_incident_history.executive_id" :options="executives" disabled
-                                :reduce="executive => executive.id" label="name"></v-select>
+                        <div class="mt-2">
+                            <div
+                                class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <!-- Search and Select People-->
+                                <input type="text" name="number" id="number" autocomplete="number" disabled
+                                    v-model="incident.last_incident_history.executive"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                     </div>
                     <div class="sm:col-span-6 col-span-12">

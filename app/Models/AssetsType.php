@@ -18,5 +18,10 @@ class AssetsType extends Model
     {
         return $this->hasMany(AssetsTypesAttribute::class);
     }
+
+    public function assets()
+    {
+        return $this->hasMany(Asset::class);
+    }
 }
 

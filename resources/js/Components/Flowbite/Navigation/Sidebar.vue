@@ -9,7 +9,7 @@
                 <NavLinkDropdown text="Pólizas" icon="fa-solid fa-gear"
                     :childs="[{ name: 'Polizas de seguros', href: '/admin/insurance_policies' }, { name: 'Añadir Poliza', href: '/admin/insurance_policies/create' }]" />
                 <NavLinkDropdown text="Siniestros" icon="fa-solid fa-car-burst"
-                    :childs="[{ name: 'Lista de Siniestros ', href: '/admin/incidents' }]" />
+                    :childs="[{ name: 'Lista de Siniestros ', href: '/admin/incidents' }, { name: 'Registrar un siniestro ', href: '/admin/assets/search_index' }]" />
             </ul>
             <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200">
                 <NavLink href="/admin/users" text="Usuarios" icon="fa-solid fa-users" />

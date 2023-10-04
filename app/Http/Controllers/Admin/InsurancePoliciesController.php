@@ -141,7 +141,7 @@ class InsurancePoliciesController extends Controller
         foreach ($insurance_policies_data as $policyData) {
             $policyData->totalComission = $policyData->totalComission();
         }
-        $insurancePolicy = InsurancePolicy::with(['latestInsurancePolicyData', 'latestInsurancePolicyData.insurancePolicy','latestInsurancePolicyData.insuranceCompany', 'latestInsurancePolicyData.customer', 'latestInsurancePolicyData.customer.documentType', 'latestInsurancePolicyData.customer.customerType', 'latestInsurancePolicyData.insurancePolicyPeople', 'latestInsurancePolicyData.assets', 'latestInsurancePolicyData.assets.assetsAttributesData'])->find($id);
+        $insurancePolicy = InsurancePolicy::with(['latestInsurancePolicyData', 'latestInsurancePolicyData.insurancePolicy','latestInsurancePolicyData.insuranceCompany', 'latestInsurancePolicyData.customer', 'latestInsurancePolicyData.customer.documentType', 'latestInsurancePolicyData.customer.customerType', 'latestInsurancePolicyData.insurancePolicyPeople', 'latestInsurancePolicyData.assets', 'latestInsurancePolicyData.assets.assetsAttributesData', 'latestInsurancePolicyData.assets.assetType'])->find($id);
         if($insurancePolicy){
             $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData;
             $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
@@ -154,7 +154,7 @@ class InsurancePoliciesController extends Controller
             $people = $latestInsurancePolicyData->insurancePolicyPeople;
             $insurance_billing_contact = $people->where('type_id', 1)->first(); // Get the insurance billing contact where type is equal to 1
             $insuranced_people = $people->where('type_id', 2)->all(); // Get the array of people where type_id is equal to 2
-            $assets = $latestInsurancePolicyData->assets;
+            $assets = $latestInsurancePolicyData->assets()->with('assetType')->get();
             foreach ($assets as $asset) {
                 $assetType = $asset->assetType;
                 $attributes = $assetType->attributes;
@@ -203,7 +203,6 @@ class InsurancePoliciesController extends Controller
         $this->createAssets($insurancePolicyData, $data['insurance_policy_data']['assets']);
         
         // Redirect to the route named insurance_policy.index
-        Log::debug("A");
         return redirect()->route('insurance_policy.index');
     }
 
@@ -347,23 +346,39 @@ class InsurancePoliciesController extends Controller
             }
         }
     }
-
+    
     private function createAssetsTypesAttribute($asset, $attributesData)
     {
-        foreach ($attributesData as $attributeData) {
-            if(is_array($attributeData)) {
+        $attributesData = [
+            1 => 'TVS233',
+          ];
+          
+          $newArrayData = [];
+          
+        foreach ($attributesData as $id => $value) {
+            $newArrayData[] = [
+                'id' => $id,
+                'value' => $value,
+            ];
+        }
+        
+        if (!is_array($asset)) {
+            $asset = json_decode($asset, true);
+        }
+
+        // Check if $attributesData is not null or empty
+        if (!empty($newArrayData)) {
+            foreach ($newArrayData as $attributeData) {
                 AssetsAttributesData::updateOrCreate(
                     ['id' => $attributeData['id'] ?? null],
                     [
-                        'asset_id' => $asset->id,
-                        'assets_types_attributes_id' => $attributeData['assets_types_attributes_id'],
+                        'asset_id' => $asset['id'],
+                        'assets_types_attributes_id' => $attributeData['id'],
                         'value' => $attributeData['value']
                     ]
                 );
             }
         }
     }
-
-
     
 }

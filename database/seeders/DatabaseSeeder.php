@@ -23,9 +23,7 @@ class DatabaseSeeder extends Seeder
             //InsurancePolicyTableSeeder::class,
             //InsurancePolicyPeopleTableSeeder::class,
             GeneralSettingsTableSeeder::class,
-            DriversTableSeeder::class,
             WorkshopsTableSeeder::class,
-            ExecutivesTableSeeder::class,
             BanksTableSeeder::class,
         ]);
     }

@@ -2,6 +2,7 @@
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
+import AddFile from './Modals/AddFile.vue';
 
 </script>
 <template>
@@ -214,18 +215,21 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         </div>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                            Conductor
-                            <!-- Add People Modal-->
-                            <button type="button" @click="showModal('CreateDriver')"
-                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
-                                <i class="fa-solid fa-user-plus font-xl"></i>
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
+                            <button type="button" disabled
+                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
+                                <i class="fa-solid fa-tag font-xl"></i>
                             </button>
-                            <CreateDriver :id="'CreateDriver'" @driver-added="handleNewDriver" />
+                            Conductor
                         </label>
-                        <div class="mt-2 bg-white">
-                            <v-select v-model="incident.incident_history.driver_id" :options="drivers" required
-                                :reduce="driver => driver.id" label="name"></v-select>
+                        <div class="mt-2">
+                            <div
+                                class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <!-- Search and Select People-->
+                                <input type="text" name="number" id="number" autocomplete="number" required
+                                    v-model="incident.incident_history.driver"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
@@ -252,36 +256,6 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         <textarea id="message" rows="4" v-model="incident.incident_history.summary"
                             class="bg-white block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Detalla los hechos y ocurrencias"></textarea>
-                    </div>
-                    <div class="sm:col-span-6 col-span-12">
-                        <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12">
-                            <div class="sm:col-span-6 col-span-12">
-                                <label class="relative inline-flex items-center mb-4 cursor-pointer">
-                                    <input type="checkbox" value="" class="sr-only peer"
-                                        v-model="incident.incident_history.have_police_conclusion">
-                                    <div
-                                        class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800  peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all  peer-checked:bg-blue-600">
-                                    </div>
-                                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">¿Hubo conclusión
-                                        Policial?</span>
-                                </label>
-                            </div>
-                            <div class="sm:col-span-6 col-span-12">
-                                <div
-                                    class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                    <!-- Search and Select People-->
-                                    <input type="text" name="number" id="number"
-                                        v-model="incident.incident_history.police_station" placeholder="Comisaría"
-                                        class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <textarea id="message" rows="4" v-model="incident.incident_history.police_conclusion"
-                                :disabled="!incident.incident_history.have_police_conclusion"
-                                class="bg-white block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Redacta la conclusión Policial"></textarea>
-                        </div>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
                         <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
@@ -337,20 +311,24 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         </div>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                            Ejecutivo
-                            <!-- Add People Modal-->
-                            <button type="button" @click="showModal('AddExecutive')"
-                                class="ml-2 text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
-                                <i class="fa-solid fa-user-plus font-xl"></i>
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
+                            <button type="button" disabled
+                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
+                                <i class="fa-solid fa-tag font-xl"></i>
                             </button>
-                            <CreateExecutive :id="'AddExecutive'" @executive-added="handleNewExecutive" />
+                            Ejecutivo
                         </label>
-                        <div class="mt-2 bg-white">
-                            <v-select v-model="incident.incident_history.executive_id" :options="executives"
-                                :reduce="executive => executive.id" label="name"></v-select>
+                        <div class="mt-2">
+                            <div
+                                class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <!-- Search and Select People-->
+                                <input type="text" name="number" id="number" autocomplete="number" required
+                                    v-model="incident.incident_history.executive"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
                     </div>
+
                     <div class="sm:col-span-6 col-span-12">
                         <div>
                             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
@@ -383,16 +361,52 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                         </div>
                     </div>
                     <div class="sm:col-span-6 col-span-12">
+                        <div
+                            class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                            <!-- Search and Select People-->
+                            <textarea id="message" rows="4" v-model="incident.incident_history.deductible"
+                            class="bg-white block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Denuncia Policial"></textarea>
+                        </div>
+                    </div>
+                    <div class="sm:col-span-6 col-span-12">
                         <textarea id="message" rows="4" v-model="incident.incident_history.deductible"
                             class="bg-white block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Deductible"></textarea>
                     </div>
-
+                </div>
+                <div class="border-b border-gray-900/10 pb-12">
+                    <h2 class="text-base font-semibold leading-7 text-gray-900">Archivos del siniestro</h2>
+                    <p class="mt-1 text-sm leading-6 text-gray-600">
+                        Imágenes, PDF's, Excel y cualquier tipo de documento que esté relacionado a la siniestro
+                    </p>
+                    <button type="button" @click="showModal('AddFile')"
+                        class="mt-1 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
+                        Añadir Archivo
+                        <i class="ml-2 fa-solid fa-plus font-xl"></i>
+                    </button>
+                    <AddFile :id="'AddFile'" @file-added="handleNewFile" />
+                    <div class="sm:col-span-3">
+                        <div class="mt-10 grid grid-cols-8 gap-y-4">
+                            <div v-for="file in incident.incident_history.files"
+                                class="sm:col-span-4 md:col-span-2 col-span-4">
+                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
+                                    <button type="button" @click="removeFile(file)"
+                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
+                                        <i class="fa-solid fa-file mr-2"></i>
+                                        <span>{{ file.name.length > 10 ? file.name.slice(0, 10) + '...' : file.name
+                                        }}</span>
+                                        <br>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="mt-6 flex items-center justify-end gap-x-6">
                 <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancelar</button>
-                <button type="submit" @click="submit"
+                <button type="submit" @click.prevent="submit"
                     class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                     Crear
                 </button>
@@ -405,9 +419,10 @@ import CreateDriver from './Modals/CreateDriver.vue'
 import CreateWorkShop from './Modals/CreateWorkShop.vue'
 import CreateExecutive from './Modals/CreateExecutive.vue'
 import CreateBank from './Modals/CreateBank.vue'
+
 export default {
     components: {
-        CreateDriver,CreateWorkShop, CreateExecutive, CreateBank
+        CreateDriver, CreateWorkShop, CreateExecutive, CreateBank, AddFile
     },
     props: ['breadcrumbs', 'asset'],
     data() {
@@ -418,7 +433,7 @@ export default {
                 case_number: null,
                 incident_history: {
                     incident_date: null,
-                    driver_id: null,
+                    driver: null,
                     place: null,
                     police_station: null,
                     summary: null,
@@ -427,15 +442,14 @@ export default {
                     workshop_id: null,
                     workshop_entrance_date: null,
                     budget_approval_date: null,
-                    executive_id: null,
+                    executive: null,
                     is_bank_endorsed: false,
                     bank_id: null,
                     deductible: null,
+                    files: [],
                 }
             },
-            drivers: [],
             workshops: [],
-            executives: [],
             banks: [],
         };
     },
@@ -448,49 +462,25 @@ export default {
         async submit() {
             try {
                 const response = await axios.post('/admin/incidents/store', this.incident);
-                console.log(response.data);
+                window.location.href = '/admin/incidents';
                 // handle success (e.g., show notification, redirect)
             } catch (error) {
                 console.log(error);
                 // handle error (e.g., show error message)
             }
         },
-        handleNewDriver(data) {
-            this.drivers.push(data);
-            this.incident.incident_history.driver_id = data.id;
-        },
         handleNewWorkShop(data) {
             this.workshops.push(data);
             this.incident.incident_history.workshop_id = data.id;
-        },
-        handleNewExecutive(data) {
-            this.executives.push(data);
-            this.incident.incident_history.executive_id = data.id;
         },
         handleNewBank(data) {
             this.banks.push(data);
             this.incident.incident_history.bank_id = data.id;
         },
-        async getDrivers() {
-            try {
-                const response = await axios.get('/api/drivers');
-                this.drivers = response.data;
-            } catch (error) {
-                console.log(error);
-            }
-        },
         async getWorkshops() {
             try {
                 const response = await axios.get('/api/workshops');
                 this.workshops = response.data;
-            } catch (error) {
-                console.log(error);
-            }
-        },
-        async getExecutives() {
-            try {
-                const response = await axios.get('/api/executives');
-                this.executives = response.data;
             } catch (error) {
                 console.log(error);
             }
@@ -502,12 +492,13 @@ export default {
             } catch (error) {
                 console.log(error);
             }
-        }
+        },
+        handleNewFile(newFile) {
+            this.incident.incident_history.files.push(newFile);
+        },
     },
     mounted() {
-        this.getDrivers();
         this.getWorkshops();
-        this.getExecutives();
         this.getBanks();
     },
 };

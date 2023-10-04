@@ -13,7 +13,7 @@ class IncidentHistory extends Model
     protected $fillable = [
         'incident_id',
         'incident_date',
-        'driver_id',
+        'driver',
         'place',
         'police_station',
         'status_id',
@@ -23,7 +23,7 @@ class IncidentHistory extends Model
         'workshop_id',
         'workshop_entrance_date',
         'budget_approval_date',
-        'executive_id',
+        'executive',
         'is_bank_endorsed',
         'bank_id',
         'deductible',
@@ -32,11 +32,6 @@ class IncidentHistory extends Model
     public function incident()
     {
         return $this->belongsTo(Incident::class);
-    }
-
-    public function driver()
-    {
-        return $this->belongsTo(Driver::class);
     }
 
     public function status()
@@ -49,10 +44,6 @@ class IncidentHistory extends Model
         return $this->belongsTo(Workshop::class);
     }
 
-    public function executive()
-    {
-        return $this->belongsTo(Executive::class);
-    }
 
     public function bank()
     {

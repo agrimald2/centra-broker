@@ -73,7 +73,7 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="result_asset in result_assets" class="bg-white border-b   hover:bg-gray-50 ">
+                    <tr v-for="result_asset in result_assets" v-if="result_asset" class="bg-white border-b   hover:bg-gray-50 ">
                         <th class="px-6 py-4">
                             <div class="text-base font-semibold">
                                 {{ result_asset[0].asset.asset_type.name }}
