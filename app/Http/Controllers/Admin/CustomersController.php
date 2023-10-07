@@ -45,6 +45,7 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
+        Log::debug($request);
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string',

@@ -349,11 +349,8 @@ class InsurancePoliciesController extends Controller
     
     private function createAssetsTypesAttribute($asset, $attributesData)
     {
-        $attributesData = [
-            1 => 'TVS233',
-          ];
-          
-          $newArrayData = [];
+         
+        $newArrayData = [];
           
         foreach ($attributesData as $id => $value) {
             $newArrayData[] = [
