@@ -19,8 +19,7 @@ import AddFile from './Modals/AddFile.vue';
                 </div>
                 <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12 border-b pb-5 border-gray-900/10">
                     <div class="col-span-12">
-                        <h2 class="text-base font-semibold leading-7 text-indigo-600 uppercase">Información Activo #{{
-                            asset.id }}</h2>
+                        <h2 class="text-base font-semibold leading-7 text-indigo-600 uppercase">Información Activo # {{ asset.assets_attributes_data[0].value }}</h2>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
