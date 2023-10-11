@@ -22,9 +22,9 @@ class AssetsAttributesData extends Model
         return $this->belongsTo(Asset::class);
     }
 
-    public function attribute()
+    public function assetsTypesAttribute()
     {
-        return $this->belongsTo(Attribute::class);
+        return $this->belongsTo(AssetsTypesAttribute::class, 'assets_types_attributes_id', 'id');
     }
 }
 

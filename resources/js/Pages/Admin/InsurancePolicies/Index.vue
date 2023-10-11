@@ -12,8 +12,8 @@ import { Head } from '@inertiajs/vue3';
                 <div class="flex items-center">
                     <div class="relative w-full">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 " aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                            <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 18 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
                             </svg>
@@ -60,10 +60,8 @@ import { Head } from '@inertiajs/vue3';
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="insurancePolicy in insurancePolicies"
-                            class="bg-white border-b   hover:bg-gray-50 ">
-                            <th scope="row"
-                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                        <tr v-for="insurancePolicy in insurancePolicies" class="bg-white border-b   hover:bg-gray-50 ">
+                            <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
                                 <div class="">
                                     <div class="text-base font-semibold">{{ insurancePolicy.number }}</div>
                                     <div class="font-normal text-gray-500  hidden sm:flex">{{ new
@@ -71,17 +69,26 @@ import { Head } from '@inertiajs/vue3';
                                 </div>
                             </th>
                             <td class="px-6 py-4">
-                                {{ insurancePolicy.latest_insurance_policy_data.customer.name }}
-                                <br>
-                                {{ insurancePolicy.latest_insurance_policy_data.customer.document_type.name }} | {{ insurancePolicy.latest_insurance_policy_data.customer.document_number }}
+                                <span v-if="insurancePolicy.latest_insurance_policy_data.customer">
+                                    {{ insurancePolicy.latest_insurance_policy_data.customer.name }}
+                                    <br>
+                                    {{ insurancePolicy.latest_insurance_policy_data.customer.document_type.name }} | {{ insurancePolicy.latest_insurance_policy_data.customer.document_number }}
+                                </span>
+                                <span v-else> 
+                                    ---
+                                </span>
                             </td>
                             <td class="px-6 py-4">
-                                {{ insurancePolicy.latest_insurance_policy_data.insurance_company.name }}
-                                <br>
-                                {{ insurancePolicy.latest_insurance_policy_data.customer.customer_type.name }}
+                                <span v-if="insurancePolicy.latest_insurance_policy_data.customer">
+                                    {{ insurancePolicy.latest_insurance_policy_data.insurance_company.name }}
+                                    <br>
+                                    {{ insurancePolicy.latest_insurance_policy_data.customer.customer_type.name }}
+                                </span>
+                                <span v-else> 
+                                    ---
+                                </span>
                             </td>
                             <td class="px-6 py-4">
-
                                 <div class="flex items-center">
                                     <div class="h-2.5 w-2.5 rounded-full bg-green-500 mr-2"></div>
                                     {{ insurancePolicy.latest_insurance_policy_data.assets.length }}
@@ -91,7 +98,8 @@ import { Head } from '@inertiajs/vue3';
                                 $ {{ insurancePolicy.latest_insurance_policy_data.netPremium.toFixed(2) }}
                             </td>
                             <td class="px-6 py-4">
-                                $ {{ insurancePolicy.latest_insurance_policy_data.totalComission.toFixed(2) }} <br>  % {{ insurancePolicy.latest_insurance_policy_data.comission }}
+                                $ {{ insurancePolicy.latest_insurance_policy_data.totalComission.toFixed(2) }} <br> % {{
+                                    insurancePolicy.latest_insurance_policy_data.comission }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ insurancePolicy.latest_insurance_policy_data.start_date }}

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('incident_histories', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('incident_id');
-            $table->date('incident_date');
-            $table->string('driver');
-            $table->string('place');
+            $table->date('incident_date')->nullable();
+            $table->string('driver')->nullable();
+            $table->string('place')->nullable();
             $table->string('police_station')->nullable();
             $table->unsignedBigInteger('status_id')->default(1);
             $table->text('summary')->nullable();

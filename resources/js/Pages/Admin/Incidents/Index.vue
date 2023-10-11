@@ -88,7 +88,9 @@ import { Head } from '@inertiajs/vue3';
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                {{ incident.asset.insurance_policy_data.insurance_company.name }}
+                                <span v-if="incident.asset.insurance_policy_data.insurance_company">
+                                    {{ incident.asset.insurance_policy_data.insurance_company.name }}
+                                </span>
                             </td>
                             <td class="px-6 py-4">
                                 {{ incident.last_incident_history.incident_date }}

@@ -73,28 +73,28 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="result_asset in result_assets" v-if="result_asset" class="bg-white border-b   hover:bg-gray-50 ">
+                    <tr v-for="result_asset in result_assets.assets" v-if="result_assets" class="bg-white border-b hover:bg-gray-50 ">
                         <th class="px-6 py-4">
                             <div class="text-base font-semibold">
-                                {{ result_asset[0].asset.asset_type.name }}
+                                {{ result_asset.asset.asset_type.name }}
                             </div>
                         </th>
                         <td class="px-6 py-4">
-                            {{ result_asset[0].asset.insured_amount }}
+                            {{ result_asset.asset.insured_amount }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ result_asset[0].asset.vigency_date }}
+                            {{ result_asset.asset.vigency_date }}
                         </td>
                         <td class="px-6 py-4">
                             <a
-                                :href="'/admin/insurance_policies/show/' + result_asset[0].asset.insurance_policy_data.insurance_policy_id"
+                                :href="'/admin/insurance_policies/show/' + result_asset.asset.insurance_policy_data.insurance_policy_id"
                                 class="text-white bg-indigo-800 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                 Poliza
                             </a>
                         </td>
                         <td class="px-6 py-4">
-                            <a v-if="result_asset[0].asset.incidents.length > 0"
-                                :href="'/admin/incidents/show/' + result_asset[0].asset.incidents[0].id"
+                            <a v-if="result_asset.asset.incidents.length > 0"
+                                :href="'/admin/incidents/show/' + result_asset.asset.incidents.id"
                                 class="text-white bg-red-800 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                 <i class="fa-solid fa-car-burst text-xl"></i>
                             </a>

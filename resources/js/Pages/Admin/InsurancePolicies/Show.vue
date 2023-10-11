@@ -320,9 +320,11 @@ import ShowAsset from './Modals/ShowAsset.vue';
                                         </div>
                                     </th>
                                     <td class="px-6 py-4">
-                                        {{ endorse.customer.name }}
+                                        <span v-if="endorse.customer"> 
+                                            {{ endorse.customer.name }}
                                         <br>
                                         {{ endorse.customer.document_type.name }} | {{ endorse.customer.document_number }}
+                                        </span>
                                     </td>
                                     <td class="px-6 py-4">
                                         <div class="flex items-center">

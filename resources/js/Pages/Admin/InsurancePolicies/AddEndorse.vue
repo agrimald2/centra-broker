@@ -322,7 +322,7 @@ export default {
             insurance_policy: {
                 number: null,
                 insurance_policy_data: {
-                    customer_id: this.insurancePolicy.customer.id,
+                    customer_id: this.insurancePolicy.customer ? this.insurancePolicy.customer.id : 0,
                     insurance_policies_status_id: this.insurancePolicy.insurance_policies_status_id,
                     insurance_company_id: this.insurancePolicy.insurance_company_id,
                     start_date: this.insurancePolicy.start_date,

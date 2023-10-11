@@ -40,7 +40,7 @@ import AddFile from './Modals/AddFile.vue';
                             </div>
                         </div>
                     </div>
-                    <div class="sm:col-span-3 col-span-12">
+                    <div class="sm:col-span-3 col-span-12" v-if="asset.customer">
                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                             <button type="button" disabled
                                 class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
@@ -59,7 +59,7 @@ import AddFile from './Modals/AddFile.vue';
                             </div>
                         </div>
                     </div>
-                    <div class="sm:col-span-3 col-span-12">
+                    <div class="sm:col-span-3 col-span-12" v-if="asset.insurance_policy_data.insurance_company">
                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
                             <button type="button" disabled
                                 class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">

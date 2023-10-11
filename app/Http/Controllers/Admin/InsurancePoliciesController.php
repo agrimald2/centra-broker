@@ -27,8 +27,10 @@ class InsurancePoliciesController extends Controller
             $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData;
             $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
             $customer = $latestInsurancePolicyData->customer;
-            $contacts = $customer->documentType;
-            $addresses = $customer->customerType;
+            if($customer){
+                $contacts = $customer->documentType;
+                $addresses = $customer->customerType;
+            }
             $totalComission = $latestInsurancePolicyData->totalComission();
             $insurancePolicy->totalComission = $totalComission; // Add total comission to the insurancePolicy array
             $latestInsurancePolicyData->totalComission = $totalComission; // Add total comission to the insurancePolicyData array
@@ -59,8 +61,10 @@ class InsurancePoliciesController extends Controller
             $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData;
             $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
             $customer = $latestInsurancePolicyData->customer;
-            $contacts = $customer->documentType;
-            $addresses = $customer->customerType;
+            if($customer){
+                $contacts = $customer->documentType;
+                $addresses = $customer->customerType;
+            }
             $totalComission = $latestInsurancePolicyData->totalComission();
             $netPremium = $latestInsurancePolicyData->netPremiumTotal();
             $insurancePolicy->totalComission = $totalComission; // Add total comission to the insurancePolicy array
@@ -99,8 +103,10 @@ class InsurancePoliciesController extends Controller
             $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData;
             $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
             $customer = $latestInsurancePolicyData->customer;
-            $contacts = $customer->documentType;
-            $addresses = $customer->customerType;
+            if($customer){
+                $addresses = $customer->customerType;
+                $contacts = $customer->documentType;
+            }
             $totalComission = $latestInsurancePolicyData->totalComission();
             $insurancePolicy->totalComission = $totalComission; // Add total comission to the insurancePolicy array
             $latestInsurancePolicyData->totalComission = $totalComission; // Add total comission to the insurancePolicyData array
@@ -146,8 +152,10 @@ class InsurancePoliciesController extends Controller
             $latestInsurancePolicyData = $insurancePolicy->latestInsurancePolicyData;
             $insuranceCompany = $latestInsurancePolicyData->insuranceCompany;
             $customer = $latestInsurancePolicyData->customer;
-            $contacts = $customer->documentType;
-            $addresses = $customer->customerType;
+            if($customer){
+                $contacts = $customer->documentType;
+                $addresses = $customer->customerType;
+            }
             $totalComission = $latestInsurancePolicyData->totalComission();
             $insurancePolicy->totalComission = $totalComission; // Add total comission to the insurancePolicy array
             $latestInsurancePolicyData->totalComission = $totalComission; // Add total comission to the insurancePolicyData array

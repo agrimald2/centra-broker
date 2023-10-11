@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\InsurancePoliciesController;
 use App\Http\Controllers\Admin\IncidentController;
 use App\Http\Controllers\Admin\AssetController;
+use App\Http\Controllers\Admin\CustomerTypesController;
 use Inertia\Inertia;
 
 /*
@@ -82,6 +83,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::prefix('assets')->group(function () {
         Route::get('/search_index', [AssetController::class, 'search'])->name('assets.search.index');
         Route::get('/search_assets', [AssetController::class, 'getAssetByAttributeValue'])->name('assets.search');
+        Route::get('/get', [AssetController::class, 'getAssets'])->name('assets.get');
+        Route::get('/index', [AssetController::class, 'index'])->name('assets.index');
     });
    
 });

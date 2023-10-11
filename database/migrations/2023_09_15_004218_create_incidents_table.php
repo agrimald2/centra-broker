@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('incidents', function (Blueprint $table) {
             $table->id();
-            $table->string('incident_number');
-            $table->string('case_number');
-            $table->unsignedBigInteger('asset_id');
+            $table->string('incident_number')->nullable();
+            $table->string('case_number')->nullable();
+            $table->unsignedBigInteger('asset_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

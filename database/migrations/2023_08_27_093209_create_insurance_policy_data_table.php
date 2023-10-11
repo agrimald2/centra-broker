@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('insurance_policy_data', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('insurance_policy_id');
-            $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('insurance_policies_status_id');
-            $table->unsignedBigInteger('insurance_company_id');
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->unsignedBigInteger('insurance_policy_id')->nullable();
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->unsignedBigInteger('insurance_policies_status_id')->nullable();
+            $table->unsignedBigInteger('insurance_company_id')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->string('comission_type_id')->default(1);
-            $table->decimal('comission', 8, 2);
-            $table->integer('number_of_installments');
-            $table->decimal('risk_rate', 8, 2);
+            $table->decimal('comission', 8, 2)->nullable();
+            $table->integer('number_of_installments')->nullable();
+            $table->decimal('risk_rate', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

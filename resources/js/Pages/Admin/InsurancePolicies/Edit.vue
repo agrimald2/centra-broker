@@ -239,7 +239,7 @@ import AddFile from './Modals/AddFile.vue';
                                                 <tr>
                                                     <th scope="col" class="px-6 py-3 text-center"
                                                         v-for="attribute in asset.assets_attributes_data">
-                                                        {{ attribute.value}}
+                                                        {{ attribute}}
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -333,6 +333,7 @@ export default {
                 window.location.href = '/admin/insurance_policies';
             } catch (error) {
                 console.log(error);
+                window.location.href = '/admin/insurance_policies';
                 // handle error (e.g., show error message)
             }
         },

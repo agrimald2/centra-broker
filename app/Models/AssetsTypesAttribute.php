@@ -23,5 +23,9 @@ class AssetsTypesAttribute extends Model
     {
         return $this->belongsTo(AssetsType::class);
     }
+
+    public function assetsAttributesData(){
+        return $this->hasMany(AssetsAttributesData::class, 'assets_types_attributes_id', 'id');
+    }
 }
 
