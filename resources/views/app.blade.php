@@ -37,7 +37,7 @@
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
-
+        
         <!-- Flowbite -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
         <script src="https://kit.fontawesome.com/2780e63ff4.js" crossorigin="anonymous"></script>
