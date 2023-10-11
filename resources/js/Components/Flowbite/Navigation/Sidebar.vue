@@ -5,7 +5,7 @@
             <ul class="space-y-2">
                 <NavLink href="/admin/dashboard" text="Dashboard" icon="fa-solid fa-dashboard" />
                 <NavLink href="/admin/customers" text="Clientes" icon="fa-solid fa-user-tie" />
-                <NavLink href="/admin/assets/search_index" text="Activos" icon="fa-solid fa-box" />
+                <NavLink href="/admin/assets/index" text="Activos" icon="fa-solid fa-box" />
                 <NavLinkDropdown text="Pólizas" icon="fa-solid fa-gear"
                     :childs="[{ name: 'Polizas de seguros', href: '/admin/insurance_policies' }, { name: 'Añadir Poliza', href: '/admin/insurance_policies/create' }]" />
                 <NavLinkDropdown text="Siniestros" icon="fa-solid fa-car-burst"
