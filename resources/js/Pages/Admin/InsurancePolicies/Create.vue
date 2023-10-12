@@ -277,9 +277,6 @@ import FilesDrop from './FilesDrop.vue';
                         </h1>
                     </div>
                 </div>
-                {{
-                    this.insurance_policy.insurance_policy_data.files
-                }}
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Archivos de la póliza</h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">
@@ -451,8 +448,8 @@ export default {
         }
     },
     mounted() {
-        this.getCustomers();
-        this.getInsuranceCompanies();
+        //this.getCustomers();
+        //this.getInsuranceCompanies();
     },
     watch: {
         'insurance_policy.insurance_policy_data.start_date': function (newStartDate) {
