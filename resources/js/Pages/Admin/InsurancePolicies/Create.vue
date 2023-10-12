@@ -448,8 +448,8 @@ export default {
         }
     },
     mounted() {
-        //this.getCustomers();
-        //this.getInsuranceCompanies();
+        this.getCustomers();
+        this.getInsuranceCompanies();
     },
     watch: {
         'insurance_policy.insurance_policy_data.start_date': function (newStartDate) {
