@@ -110,4 +110,20 @@ class UtilitiesController extends Controller
         return response()->json($asset_types_attributes);
     }
 
+    public function uploadFiles(Request $request)
+    {
+        $files = $request->file('selectedFiles');
+        // Ensure $files is an array
+        if (!is_array($files)) {
+            $files = [$files];
+        }
+        // store in policy_id/policy_data_id - Use Name and Date
+        foreach($files as $file) {
+            Log::debug(0);
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('uploads', $filename, 'public');
+            Log::warning($path);
+        }
+        return response()->json(['message' => 'Files uploaded successfully']);
+    }
 }

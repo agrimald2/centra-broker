@@ -22,4 +22,9 @@ class InsurancePolicy extends Model
     {
         return $this->hasOne(InsurancePolicyData::class)->latest();
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
 }

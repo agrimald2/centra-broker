@@ -13,6 +13,7 @@ use App\Models\InsuranceCompany;
 use App\Models\InsurancePolicyPeople;
 use App\Models\AssetsType;
 use App\Models\Asset;
+use App\Models\File;
 use App\Models\AssetsAttributesData;
 use Carbon;
 use Log;
@@ -127,6 +128,7 @@ class InsurancePoliciesController extends Controller
                 $netTotal = $asset->netTotal();
                 $incidents = $asset->incidents; // Added incidents relationship
             }
+            $files = $insurancePolicy->files; // Store the files from insurancePolicy in a variable $files
             $breadcrumbs = [["name" => "Pólizas de seguro", "href" => "/admin/insurance_policies"], ["name" => "Póliza N° ".$insurancePolicy->number, "href" => "/admin/insurance_policies/show/".$insurancePolicy->id]];
 
             return Inertia::render('Admin/InsurancePolicies/Show', [
@@ -136,6 +138,7 @@ class InsurancePoliciesController extends Controller
                 'insuranced_people' => $insuranced_people,
                 'insurance_policies_data' => $insurance_policies_data,
                 'assets' => $assets,
+                'files' => $files, // Add files to the returned data
             ]);
         } else {
             return response()->json(['message' => 'Insurance Policy not found'], 404);
@@ -197,7 +200,10 @@ class InsurancePoliciesController extends Controller
     {
         // Get the input data
         $data = $request->all();
-        
+        // Get the files 
+        $files = $request->file('files');
+        $assets = $data['insurance_policy_data']['assets'];
+
         // Create the InsurancePolicy
         $insurancePolicy = $this->createInsurancePolicy($data);
         
@@ -205,13 +211,48 @@ class InsurancePoliciesController extends Controller
         $insurancePolicyData = $this->createInsurancePolicyData($insurancePolicy, $data['insurance_policy_data']);
         
         // Create the InsurancePolicyPeople
-        $this->createInsurancePolicyPeople($insurancePolicyData, $data['insurance_policy_data']['insurance_policy_people']);
+        if($data['insurance_policy_data']['insurance_policy_people']){
+            $this->createInsurancePolicyPeople($insurancePolicyData, $data['insurance_policy_data']['insurance_policy_people']);
+        }
+
+        if($assets){
+            foreach($assets as $key => $asset) {
+                $assets[$key] = json_decode($asset, true);
+            }
+            Log::warning($assets);
+            $this->createAssets($insurancePolicyData, $assets);
+        }
         
-        // Create the Assets
-        $this->createAssets($insurancePolicyData, $data['insurance_policy_data']['assets']);
-        
+        // Store the Files
+        if($files){
+            $this->storeFiles($insurancePolicyData, $files);
+        }
+
         // Redirect to the route named insurance_policy.index
         return redirect()->route('insurance_policy.index');
+    }
+
+    public function storeFiles($insurancePolicyData, $files)
+    {
+        // Ensure $files is an array
+        if (!is_array($files)) {
+            $files = [$files];
+        }
+        // store in policy_id/policy_data_id - Use Name and Date
+        foreach($files as $file) {
+            $filename = $file->getClientOriginalName();
+            // Add today's date to the filename
+            $filename = date('Y-m-d') . '-' . $filename;
+            $path = $file->storeAs('polizas/'.$insurancePolicyData->insurance_policy_id, $filename, 'public');
+            // Store the file in the database
+            File::create([
+                'name' => $filename,
+                'insurance_policy_id' => $insurancePolicyData->insurance_policy_id,
+                'path' => '/polizas/'.$insurancePolicyData->insurance_policy_id.'/'.$filename
+            ]);
+        }
+
+        return response()->json(['message' => 'Files uploaded successfully']);
     }
 
     public function update(Request $request, $id)
@@ -309,17 +350,18 @@ class InsurancePoliciesController extends Controller
     
     private function createInsurancePolicyData($insurancePolicy, $insurancePolicyData)
     {
+        Log::debug($insurancePolicyData);
         return InsurancePolicyData::create([
             'insurance_policy_id' => $insurancePolicy->id,
-            'customer_id' => $insurancePolicyData['customer_id'],
-            'insurance_policies_status_id' => $insurancePolicyData['insurance_policies_status_id'],
-            'insurance_company_id' => $insurancePolicyData['insurance_company_id'],
-            'start_date' => $insurancePolicyData['start_date'],
-            'end_date' => $insurancePolicyData['end_date'],
-            'comission_type_id' => $insurancePolicyData['comission_type_id'],
-            'comission' => $insurancePolicyData['comission'],
-            'number_of_installments' => $insurancePolicyData['number_of_installments'],
-            'risk_rate' => $insurancePolicyData['risk_rate']
+            'customer_id' => $insurancePolicyData['customer_id'] == 'null' ? null : $insurancePolicyData['customer_id'],
+            'insurance_policies_status_id' => $insurancePolicyData['insurance_policies_status_id'] == 'null' ? null : $insurancePolicyData['insurance_policies_status_id'],
+            'insurance_company_id' => $insurancePolicyData['insurance_company_id'] == 'null' ? null : $insurancePolicyData['insurance_company_id'],
+            'start_date' => $insurancePolicyData['start_date'] == 'null' ? null : $insurancePolicyData['start_date'],
+            'end_date' => $insurancePolicyData['end_date'] == 'null' ? null : $insurancePolicyData['end_date'],
+            'comission_type_id' => $insurancePolicyData['comission_type_id'] == 'null' ? null : $insurancePolicyData['comission_type_id'],
+            'comission' => $insurancePolicyData['comission'] == 'null' ? null : $insurancePolicyData['comission'],
+            'number_of_installments' => $insurancePolicyData['number_of_installments'] == 'null' ? null : $insurancePolicyData['number_of_installments'],
+            'risk_rate' => $insurancePolicyData['risk_rate'] == 'null' ? null : $insurancePolicyData['risk_rate']
         ]);
     }
     

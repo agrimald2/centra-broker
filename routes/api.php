@@ -32,7 +32,7 @@ Route::get('/workshops', [UtilitiesController::class, 'getWorkshops']);
 Route::get('/executives', [UtilitiesController::class, 'getExecutives']);
 Route::get('/banks', [UtilitiesController::class, 'getBanks']);
 
-
+Route::post('/uploadFiles', [UtilitiesController::class, 'uploadFiles']);
 
 Route::get('/insurance_policy_test', [UtilitiesController::class, 'getInsurancePolicyTest']);
 Route::get('/search_assets', [UtilitiesController::class, 'getAssetByAttributeValue']);

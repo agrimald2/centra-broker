@@ -6,6 +6,7 @@ import AddCustomer from './Modals/AddCustomer.vue';
 import AddPeopleToInsurance from './Modals/AddPeopleToInsurance.vue';
 import AddNewAsset from './Modals/AddNewAsset.vue';
 import AddFile from './Modals/AddFile.vue';
+import FilesDrop from './FilesDrop.vue';
 </script>
 <template>
     <Head title="Crear Póliza" />
@@ -276,34 +277,15 @@ import AddFile from './Modals/AddFile.vue';
                         </h1>
                     </div>
                 </div>
-
+                {{
+                    this.insurance_policy.insurance_policy_data.files
+                }}
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Archivos de la póliza</h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">
                         Imágenes, PDF's, Excel y cualquier tipo de documento que esté relacionado a la poliza
                     </p>
-                    <button type="button" @click="showModal('AddFile')"
-                        class="mt-1 text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
-                        Añadir Archivo
-                        <i class="ml-2 fa-solid fa-plus font-xl"></i>
-                    </button>
-                    <AddFile :id="'AddFile'" @file-added="handleNewFile" />
-                    <div class="sm:col-span-3">
-                        <div class="mt-10 grid grid-cols-8 gap-y-4">
-                            <div v-for="file in insurance_policy.insurance_policy_data.files"
-                                class="sm:col-span-4 md:col-span-2 col-span-4">
-                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
-                                    <button type="button" @click="removeFile(file)"
-                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
-                                        <i class="fa-solid fa-file mr-2"></i>
-                                        <span>{{ file.name.length > 10 ? file.name.slice(0, 10) + '...' : file.name
-                                        }}</span>
-                                        <br>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <FilesDrop @file-added="handleNewFile" />
                 </div>
             </div>
             <div class="mt-6 flex items-center justify-end gap-x-6">
@@ -319,7 +301,7 @@ import AddFile from './Modals/AddFile.vue';
 <script>
 export default {
     components: {
-        AddCustomer, AddPeopleToInsurance, AddNewAsset, AddFile
+        AddCustomer, AddPeopleToInsurance, AddNewAsset, AddFile, FilesDrop
     },
     props: ['breadcrumbs', 'general_settings'],
     data() {
@@ -340,18 +322,44 @@ export default {
                     insurance_policy_billing_contact: { name: null },
                     insurance_policy_insuranced_people: [],
                     assets: [],
-                    files: [],
                     insurance_policies_data_files: [],
                 },
             },
             customers: [],
             insurance_companies: [],
+            files: [],
         };
     },
     methods: {
         async submit() {
             try {
-                const response = await axios.post('/admin/insurance_policies/store', this.insurance_policy);
+                const formData = new FormData();
+                Object.keys(this.insurance_policy).forEach(key => {
+                    if (key !== 'files') {
+                        if (key === 'insurance_policy_data') {
+                            Object.keys(this.insurance_policy[key]).forEach(subKey => {
+                                if (subKey === 'assets') {
+                                    this.insurance_policy[key][subKey].forEach((asset, index) => {
+                                        formData.append(`${key}[${subKey}][${index}]`, JSON.stringify(asset));
+                                    });
+                                } else {
+                                    formData.append(`${key}[${subKey}]`, this.insurance_policy[key][subKey]);
+                                }
+                            });
+                        } else {
+                            formData.append(key, this.insurance_policy[key]);
+                        }
+                    }
+                });
+                this.files.forEach((file, index) => {
+                    formData.append(`files[${index}]`, file);
+                });
+
+                const response = await axios.post('/admin/insurance_policies/store', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
                 // Redirect to the desired route
                 window.location.href = '/admin/insurance_policies';
             } catch (error) {
@@ -380,8 +388,9 @@ export default {
                 console.log(error);
             }
         },
-        handleNewFile(newFile) {
-            this.insurance_policy.insurance_policy_data.files.push(newFile);
+        handleNewFile(files) {
+            console.dir(files);
+            this.files = files;
         },
         removeFile(fileToRemove) {
             const index = this.insurance_policy.insurance_policy_data.files.findIndex(file =>
@@ -462,4 +471,6 @@ export default {
     },
 };
 </script>
-<style>@import "vue-select/dist/vue-select.css";</style>
+<style>
+@import "vue-select/dist/vue-select.css";
+</style>

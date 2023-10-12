@@ -255,21 +255,31 @@ import ShowAsset from './Modals/ShowAsset.vue';
                     <p class="mt-1 text-sm leading-6 text-gray-600">
                         Imágenes, PDF's, Excel y cualquier tipo de documento que esté relacionado a la poliza
                     </p>
-                    <div class="sm:col-span-3">
-                        <div class="mt-2 grid grid-cols-8 gap-y-4">
-                            <div v-for="file in insurance_policy.insurance_policy_data.files"
-                                class="sm:col-span-4 md:col-span-2 col-span-4">
-                                <div class="w-48 text-gray-900 bg-white border border-gray-200 rounded-lg   ">
-                                    <button type="button" @click="removeFile(file)"
-                                        class="relative inline-flex items-center w-full px-4 py-2 text-sm font-medium border-b border-gray-200 rounded-t-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700    dark:focus:ring-gray-500 dark:focus:text-white">
-                                        <i class="fa-solid fa-file mr-2"></i>
-                                        <span>{{ file.name.length > 10 ? file.name.slice(0, 10) + '...' : file.name
-                                        }}</span>
-                                        <br>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="overflow-x-auto" v-if="files.length > 0">
+                        <table class="w-full text-sm text-left text-gray-500 table">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3">
+                                        Nombre del archivo
+                                    </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Acciones
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="file in files" class="bg-white border-b hover:bg-gray-50">
+                                    <td class="px-6 py-4">
+                                        {{ file.name }}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <button type="button" class="text-blue-500 hover:text-blue-700" @click="openFile(file.path)">
+                                            <i class="fa-solid fa-eye text-xl"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="border-b border-gray-900/10 pb-2">
@@ -320,10 +330,11 @@ import ShowAsset from './Modals/ShowAsset.vue';
                                         </div>
                                     </th>
                                     <td class="px-6 py-4">
-                                        <span v-if="endorse.customer"> 
+                                        <span v-if="endorse.customer">
                                             {{ endorse.customer.name }}
-                                        <br>
-                                        {{ endorse.customer.document_type.name }} | {{ endorse.customer.document_number }}
+                                            <br>
+                                            {{ endorse.customer.document_type.name }} | {{ endorse.customer.document_number
+                                            }}
                                         </span>
                                     </td>
                                     <td class="px-6 py-4">
@@ -373,7 +384,7 @@ export default {
     components: {
         ShowAsset, AddEndorse
     },
-    props: ['breadcrumbs', 'insurancePolicy', 'insurance_billing_contact', 'insuranced_people', 'insurance_policies_data', 'assets'],
+    props: ['breadcrumbs', 'insurancePolicy', 'insurance_billing_contact', 'insuranced_people', 'insurance_policies_data', 'assets', 'files'],
     data() {
         return {
             insurance_policy: {
@@ -399,6 +410,11 @@ export default {
         };
     },
     methods: {
+        openFile(path) {
+            console.dir(path);
+            path = '/storage/'+path;
+            window.open(path, '_blank');
+        },
         showModal(id) {
             let modal = document.getElementById(id);
             modal.classList.remove('slide-out-bck-center');
