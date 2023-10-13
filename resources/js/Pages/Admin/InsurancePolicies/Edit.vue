@@ -247,7 +247,8 @@ import AddFile from './Modals/AddFile.vue';
                                     </td>
                                     <td class="px-6 py-4">
                                         <i @click="removeAsset(asset)"
-                                            class="fa-solid fa-trash text-3xl text-red-500 cursor-pointer ml-2"></i>
+                                            class="fa-solid fa-trash text-3xl text-red-500 cursor-pointer ml-2"></i> <br>
+                                        <span v-if="asset.deleted_at" class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">Eliminado</span>
                                     </td>
                                 </tr>
                             </tbody>
@@ -378,7 +379,7 @@ export default {
                 asset.vigency_date === assetToRemove.vigency_date
             );
             if (index !== -1) {
-                this.insurance_policy.insurance_policy_data.assets.splice(index, 1);
+                this.insurance_policy.insurance_policy_data.assets[index].deleted_at = new Date().toISOString();
             }
         },
         handleNewCustomer(newCustomer) {

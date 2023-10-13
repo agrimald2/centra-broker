@@ -287,7 +287,7 @@ class InsurancePoliciesController extends Controller
             // Check if assets exists in insurance_policy_data
             if(isset($data['insurance_policy_data']['assets'])) {
                 // Update the Assets
-                $this->createAssets($insurancePolicyData, $data['insurance_policy_data']['assets']);
+                $this->updateAssets($insurancePolicyData, $data['insurance_policy_data']['assets']);
             }
         }
         
@@ -381,6 +381,8 @@ class InsurancePoliciesController extends Controller
     
     private function createAssets($insurancePolicyData, $assets)
     {
+        Log::debug($assets);
+        
         $policyDataId = $insurancePolicyData->id;
         foreach ($assets as $assetData) {
             // Check if the asset has an ID, if it does, update the asset, otherwise create a new one
@@ -399,6 +401,10 @@ class InsurancePoliciesController extends Controller
                 $asset_id = $asset->id;
                 $this->createAssetsTypesAttribute($assetData, $assetData['assets_attributes_data'], $asset_id);
             }
+            // If the asset has been deleted, then delete it using soft deletes
+            if(isset($assetData['deleted_at']) && $assetData['deleted_at'] != null) {
+                $asset->delete();
+            }
         }
         
     }
@@ -407,9 +413,7 @@ class InsurancePoliciesController extends Controller
     {
          
         $newArrayData = [];
-        
-        Log::debug($attributesData);
-        
+                
         foreach ($attributesData as $id => $value) {
             $newArrayData[] = [
                 'id' => $id,
@@ -424,11 +428,73 @@ class InsurancePoliciesController extends Controller
         // Check if $attributesData is not null or empty
         if (!empty($newArrayData)) {
             foreach ($newArrayData as $attributeData) {
+                Log::info($attributeData);
                 AssetsAttributesData::updateOrCreate(
                     [
                         'asset_id' => $asset_id,
                         'assets_types_attributes_id' => $attributeData['id'],
                         'value' => $attributeData['value']
+                    ]
+                );
+            }
+        }
+    }
+
+    private function updateAssets($insurancePolicyData, $assets)
+    {
+        Log::debug($assets);
+        
+        $policyDataId = $insurancePolicyData->id;
+        foreach ($assets as $assetData) {
+            // Check if the asset has an ID, if it does, update the asset, otherwise create a new one
+            $asset = Asset::updateOrCreate(
+                ['id' => $assetData['id'] ?? null],
+                [
+                    'insurance_policy_data_id' => $policyDataId,
+                    'asset_type_id' => $assetData['asset_type_id'],
+                    'insured_amount' => $assetData['insured_amount'],
+                    'vigency_date' => $assetData['vigency_date'],
+                    'insuranced_people' => $assetData['insuranced_people']
+                ]
+            );
+            // If the asset data has attributes, create them
+            if(isset($assetData['assets_attributes_data'])) {
+                $asset_id = $asset->id;
+                $this->updateAssetsTypesAttribute($assetData, $assetData['assets_attributes_data'], $asset_id);
+            }
+            // If the asset has been deleted, then delete it using soft deletes
+            if(isset($assetData['deleted_at']) && $assetData['deleted_at'] != null) {
+                $asset->delete();
+            }
+        }
+        
+    }
+
+    private function updateAssetsTypesAttribute($asset, $attributesData, $asset_id)
+    {
+         
+        $newArrayData = [];
+                
+        foreach ($attributesData as $id => $value) {
+            $newArrayData[] = [
+                'id' => $id,
+                'value' => $value,
+            ];
+        }
+        
+        if (!is_array($asset)) {
+            $asset = json_decode($asset, true);
+        }
+
+        // Check if $attributesData is not null or empty
+        if (!empty($newArrayData)) {
+            foreach ($newArrayData as $attributeData) {
+                Log::info($attributeData);
+                AssetsAttributesData::updateOrCreate(
+                    [
+                        'asset_id' => $asset_id,
+                        'assets_types_attributes_id' => $attributeData['id'],
+                        'value' => is_array($attributeData['value']) ? json_encode($attributeData['value']) : $attributeData['value']
                     ]
                 );
             }
