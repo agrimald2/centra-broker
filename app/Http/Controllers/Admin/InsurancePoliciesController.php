@@ -202,7 +202,7 @@ class InsurancePoliciesController extends Controller
         $data = $request->all();
         // Get the files 
         $files = $request->file('files');
-        $assets = $data['insurance_policy_data']['assets'];
+        
 
         // Create the InsurancePolicy
         $insurancePolicy = $this->createInsurancePolicy($data);
@@ -215,12 +215,15 @@ class InsurancePoliciesController extends Controller
             $this->createInsurancePolicyPeople($insurancePolicyData, $data['insurance_policy_data']['insurance_policy_people']);
         }
 
-        if($assets){
-            foreach($assets as $key => $asset) {
-                $assets[$key] = json_decode($asset, true);
+        if(array_key_exists('assets', $data['insurance_policy_data'])){
+            $assets = $data['insurance_policy_data']['assets'];
+            if($assets){
+                foreach($assets as $key => $asset) {
+                    $assets[$key] = json_decode($asset, true);
+                }
+                Log::warning($assets);
+                $this->createAssets($insurancePolicyData, $assets);
             }
-            Log::warning($assets);
-            $this->createAssets($insurancePolicyData, $assets);
         }
         
         // Store the Files
