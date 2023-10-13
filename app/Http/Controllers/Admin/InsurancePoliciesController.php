@@ -221,7 +221,6 @@ class InsurancePoliciesController extends Controller
                 foreach($assets as $key => $asset) {
                     $assets[$key] = json_decode($asset, true);
                 }
-                Log::warning($assets);
                 $this->createAssets($insurancePolicyData, $assets);
             }
         }
@@ -353,7 +352,6 @@ class InsurancePoliciesController extends Controller
     
     private function createInsurancePolicyData($insurancePolicy, $insurancePolicyData)
     {
-        Log::debug($insurancePolicyData);
         return InsurancePolicyData::create([
             'insurance_policy_id' => $insurancePolicy->id,
             'customer_id' => $insurancePolicyData['customer_id'] == 'null' ? null : $insurancePolicyData['customer_id'],
@@ -383,28 +381,35 @@ class InsurancePoliciesController extends Controller
     
     private function createAssets($insurancePolicyData, $assets)
     {
+        $policyDataId = $insurancePolicyData->id;
         foreach ($assets as $assetData) {
+            // Check if the asset has an ID, if it does, update the asset, otherwise create a new one
             $asset = Asset::updateOrCreate(
                 ['id' => $assetData['id'] ?? null],
                 [
-                    'insurance_policy_data_id' => $insurancePolicyData->id,
+                    'insurance_policy_data_id' => $policyDataId,
                     'asset_type_id' => $assetData['asset_type_id'],
                     'insured_amount' => $assetData['insured_amount'],
                     'vigency_date' => $assetData['vigency_date'],
                     'insuranced_people' => $assetData['insuranced_people']
                 ]
             );
+            // If the asset data has attributes, create them
             if(isset($assetData['assets_attributes_data'])) {
-                $this->createAssetsTypesAttribute($asset, $assetData['assets_attributes_data']);
+                $asset_id = $asset->id;
+                $this->createAssetsTypesAttribute($assetData, $assetData['assets_attributes_data'], $asset_id);
             }
         }
+        
     }
     
-    private function createAssetsTypesAttribute($asset, $attributesData)
+    private function createAssetsTypesAttribute($asset, $attributesData, $asset_id)
     {
          
         $newArrayData = [];
-          
+        
+        Log::debug($attributesData);
+        
         foreach ($attributesData as $id => $value) {
             $newArrayData[] = [
                 'id' => $id,
@@ -420,9 +425,8 @@ class InsurancePoliciesController extends Controller
         if (!empty($newArrayData)) {
             foreach ($newArrayData as $attributeData) {
                 AssetsAttributesData::updateOrCreate(
-                    ['id' => $attributeData['id'] ?? null],
                     [
-                        'asset_id' => $asset['id'],
+                        'asset_id' => $asset_id,
                         'assets_types_attributes_id' => $attributeData['id'],
                         'value' => $attributeData['value']
                     ]

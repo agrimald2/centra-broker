@@ -239,7 +239,7 @@ import AddFile from './Modals/AddFile.vue';
                                                 <tr>
                                                     <th scope="col" class="px-6 py-3 text-center"
                                                         v-for="attribute in asset.assets_attributes_data">
-                                                        {{ attribute}}
+                                                        {{ attribute.value}}
                                                     </th>
                                                 </tr>
                                             </thead>

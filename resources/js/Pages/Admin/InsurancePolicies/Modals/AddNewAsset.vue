@@ -137,6 +137,11 @@ export default {
                 };
                 this.$emit('asset-added', asset);
                 this.hideModal();
+                this.assets_attributes_data = {};
+                this.asset_type_id = '';
+                this.asset_type_name = '';
+                this.insured_amount = '';  
+                this.insuranced_people = '';              
                 // handle success (e.g., show notification, redirect)
             } catch (error) {
                 console.log(error);
