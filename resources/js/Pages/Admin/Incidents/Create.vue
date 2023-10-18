@@ -19,7 +19,8 @@ import AddFile from './Modals/AddFile.vue';
                 </div>
                 <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12 border-b pb-5 border-gray-900/10">
                     <div class="col-span-12">
-                        <h2 class="text-base font-semibold leading-7 text-indigo-600 uppercase">Información Activo # {{ asset.assets_attributes_data[0].value }}</h2>
+                        <h2 class="text-base font-semibold leading-7 text-indigo-600 uppercase">Información Activo # {{
+                            asset.assets_attributes_data[0].value }}</h2>
                     </div>
                     <div class="sm:col-span-3 col-span-12">
                         <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
@@ -65,7 +66,7 @@ import AddFile from './Modals/AddFile.vue';
                                 class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                                 <i class="fa-solid fa-tag font-xl"></i>
                             </button>
-                            Cliente
+                            Compañía
                         </label>
                         <div class="mt-2">
                             <div
@@ -359,19 +360,23 @@ import AddFile from './Modals/AddFile.vue';
                             </div>
                         </div>
                     </div>
-                    <div class="sm:col-span-6 col-span-12">
-                        <div
-                            class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                            <!-- Search and Select People-->
-                            <textarea id="message" rows="4" v-model="incident.incident_history.deductible"
-                            class="bg-white block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Denuncia Policial"></textarea>
+                    <div class="sm:col-span-3 col-span-12">
+                        <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
+                            <button type="button" disabled
+                                class="ml-2 text-white bg-gray-800 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
+                                <i class="fa-solid fa-tag font-xl"></i>
+                            </button>
+                            Denuncia
+                        </label>
+                        <div class="mt-2">
+                            <div
+                                class="bg-white flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+                                <!-- Search and Select People-->
+                                <input type="text" name="number" id="number" autocomplete="number" required
+                                    v-model="incident.incident_history.police_conclusion"
+                                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6">
+                            </div>
                         </div>
-                    </div>
-                    <div class="sm:col-span-6 col-span-12">
-                        <textarea id="message" rows="4" v-model="incident.incident_history.deductible"
-                            class="bg-white block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500   dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Deductible"></textarea>
                     </div>
                 </div>
                 <div class="border-b border-gray-900/10 pb-12">
