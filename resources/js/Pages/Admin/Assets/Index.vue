@@ -7,8 +7,8 @@ import { Head } from '@inertiajs/vue3';
     <AdminLayout>
         <Breadcrumb :breadcrumbs="breadcrumbs" />
         <div class="shadow-md sm:rounded-lg relative">
-            <div class="px-4 flex items-center py-4 bg-white">
-                <div class="mt-4 mx-2">
+            <div class="px-4 flex flex-wrap items-center py-4 bg-white">
+                <div class="mt-4 mx-2 w-full sm:w-auto">
                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
                         Cliente
                     </label>
@@ -17,7 +17,7 @@ import { Head } from '@inertiajs/vue3';
                         <option v-for="customer in customers" :value="customer.id">{{ customer.name }}</option>
                     </select>
                 </div>
-                <div class="mt-4 mx-2">
+                <div class="mt-4 mx-2 w-full sm:w-auto">
                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
                         Tipo de Activo
                     </label>
@@ -26,7 +26,7 @@ import { Head } from '@inertiajs/vue3';
                         <option v-for="asset_type in assets_types" :value="asset_type.id">{{ asset_type.name }}</option>
                     </select>
                 </div>
-                <div class="mt-4 mx-2">
+                <div class="mt-4 mx-2 w-full sm:w-auto">
                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
                         Inicio Vigencia
                     </label>
@@ -43,7 +43,7 @@ import { Head } from '@inertiajs/vue3';
                             placeholder="Select date">
                     </div>
                 </div>
-                <div class="mt-4 mx-2">
+                <div class="mt-4 mx-2 w-full sm:w-auto">
                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
                         Fin Vigencia
                     </label>
@@ -60,7 +60,7 @@ import { Head } from '@inertiajs/vue3';
                             placeholder="Select date">
                     </div>
                 </div>
-                <div class="mt-4 mx-2 pt-5">
+                <div class="mt-4 mx-2 pt-5 w-full sm:w-auto">
                     <button type="button" @click="exportToExcel()"
                         class="text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
                         <span class="hidden md:flex"> Excel</span>
@@ -101,8 +101,12 @@ import { Head } from '@inertiajs/vue3';
                     <tbody>
                         <tr v-for="asset in assets" class="bg-white border-b   hover:bg-gray-50 ">
                             <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
-                                <div class="text-base font-semibold">
-                                    {{ asset.insurance_policy_number }}
+                                <div class="text-base font-semibold text-center">
+                                    <a :href="'/admin/insurance_policies/show/'+asset.insurance_policy_id">{{ asset.insurance_policy_number }} {{ asset.insurance_policy_id }}</a>
+                                    <br> <br>
+                                    <button type="button" @click="addIncident(asset.id)" class="text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-1 text-center uppercase">
+                                        <i class="fa-solid fa-car-burst text-xl"></i>
+                                    </button>
                                 </div>
                             </th>
                             <td class="px-6 py-4">
@@ -124,17 +128,13 @@ import { Head } from '@inertiajs/vue3';
                             </td>
                             <td>
                                 <table class="w-full text-sm text-left text-gray-500 table">
-                                    <thead class="text-xs text-gray-700 uppercase bg-gray-100 ">
-                                        <tr>
-                                            <th scope="col" class="px-3 py-1 text-center"
-                                                v-for="attribute in asset.attributes">
+                                    <tbody>
+                                        <tr v-for="attribute in asset.attributes"
+                                            class="text-xs text-gray-700 uppercase bg-gray-100">
+                                            <th scope="row" class="px-3 py-1 text-center">
                                                 {{ attribute.name }}
                                             </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr scope="row" class="flex items-center px-2 py-1 text-gray-900 whitespace-nowrap">
-                                            <td class="py-2" v-for="attribute in asset.attributes">
+                                            <td class="flex items-center px-2 py-1 text-gray-900 whitespace-nowrap">
                                                 {{ attribute.value }}
                                             </td>
                                         </tr>
@@ -214,21 +214,26 @@ export default {
                 console.log(error);
             }
         },
-        formatAssets(){
+        formatAssets() {
             if (!this.assets || !this.assets.length) return [];
             const formattedAssets = this.assets.map(asset => {
-                return {
+                let formattedAsset = {
                     "Nro Póliza": asset.insurance_policy_number,
                     "Inicio Vigencia": asset.start_date,
                     "Fin Vigencia": asset.end_date,
                     "Nombre Cliente": asset.customer_name,
                     "Documento Cliente": asset.customer_document,
                     "Personas aseguradas": asset.insuranced_people,
-                    "Atributos": asset.attributes && asset.attributes.length ? asset.attributes.map(attr => `${attr.name}: ${attr.value}`).join(", ") : '',
                     "Tasa de riesgo": asset.risk_rate,
                     "Valor asegurado": asset.insuranced_amount,
                     "Comisión %": asset.comission
                 };
+                if (asset.attributes && asset.attributes.length) {
+                    asset.attributes.forEach(attr => {
+                        formattedAsset[attr.name] = attr.value;
+                    });
+                }
+                return formattedAsset;
             });
             console.dir(formattedAssets);
             return formattedAssets;
@@ -265,6 +270,9 @@ export default {
 
             return headerRow + bodyRows;
         },
+        addIncident(id) {
+            window.location.href = `/admin/incidents/create/${id}`;
+        }
     },
     mounted() {
         this.fetchAssets();

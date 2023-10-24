@@ -30,7 +30,7 @@ class IncidentController extends Controller
         $asset->netTotal = $asset->netTotal();
         $asset->customer = $asset->customer();
         $asset->insurancePolicy = $asset->insurancePolicy();
-        $breadcrumbs = [["name" => "Siniestros", "href" => "/admin/incidents"], ["name" => "Registrar Siniestro", "href" => "/admin/incidents/create"]];
+        $breadcrumbs = [["name" => "Siniestros", "href" => "/admin/incidents"], ["name" => "Registrar Siniestro", "href" => ""]];
         return Inertia::render('Admin/Incidents/Create', [
             'breadcrumbs' => $breadcrumbs,
             'asset' => $asset,

@@ -81,5 +81,29 @@ class AssetsTypesController extends Controller
         
         return;
     }
+
+    public function updateAttributeToAsset(Request $request, string $id){
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'input_type' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+            'example' => 'required|string|max:255',
+        ]);
+        
+        $attribute = AssetsTypesAttribute::findOrFail($id);
+        $attribute->update($validatedData);
+        return;
+    }
+
+    public function deleteAttributeFromAsset($id){
+        $attribute = AssetsTypesAttribute::findOrFail($id);
+        // Delete the associated AssetsAttributesData too
+        foreach($attribute->assetsAttributesData as $data) {
+            $data->delete();
+        }
+        $attribute->delete();
+        return;
+    }
+
 }
 

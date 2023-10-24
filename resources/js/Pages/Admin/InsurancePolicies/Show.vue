@@ -175,14 +175,14 @@ import ShowAsset from './Modals/ShowAsset.vue';
                             </div>
                         </div>
                     </div>
-                </div>
+                    VALOR AS.	   </div>
 
                 <div class="border-b border-gray-900/10 pb-12">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Activos</h2>
                     <p class="mt-1 text-sm leading-6 text-gray-600">
                         Lista de activos Asegurados
                     </p>
-                    <div class="sm:col-span-3">
+                    <div class="sm:col-span-3 overflow-x-auto">
                         <table class="w-full text-sm text-left text-gray-500  table">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                                 <tr>
@@ -195,7 +195,7 @@ import ShowAsset from './Modals/ShowAsset.vue';
                                     <th scope="col" class="px-6 py-3">
                                         Fecha de Vigencia
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3 overflow-x">
                                         Atributos
                                     </th>
                                     <th scope="col" class="px-6 py-3">

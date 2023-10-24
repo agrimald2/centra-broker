@@ -86,6 +86,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
         Route::get('/get', [AssetController::class, 'getAssets'])->name('assets.get');
         Route::get('/index', [AssetController::class, 'index'])->name('assets.index');
     });
+
+    Route::post('/delete_assets_type_attribute/{id}', [AssetsTypesController::class, 'deleteAttributeFromAsset']);    
    
 });
 require __DIR__.'/auth.php';

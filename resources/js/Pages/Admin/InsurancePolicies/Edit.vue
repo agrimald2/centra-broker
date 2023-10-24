@@ -199,7 +199,7 @@ import AddFile from './Modals/AddFile.vue';
                         <i class="ml-2 fa-solid fa-plus font-xl"></i>
                     </button>
                     <AddNewAsset :id="'NewAsset'" @asset-added="handleNewAsset" />
-                    <div class="sm:col-span-3">
+                    <div class="sm:col-span-3 overflow-x-auto">
                         <table class="w-full text-sm text-left text-gray-500"
                             v-if="insurance_policy.insurance_policy_data.assets.length > 0">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">

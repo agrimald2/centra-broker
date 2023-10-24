@@ -70,6 +70,8 @@ class AssetController extends Controller
             }
         
             $formattedAssets[] = [
+                'id' => $asset->id,
+                'insurance_policy_id' => $asset->insurancePolicyData->insurancePolicy->id,
                 'insurance_policy_number' => $asset->insurancePolicyData->insurancePolicy->number,
                 'start_date' => $asset->insurancePolicyData->start_date,
                 'end_date' => $asset->insurancePolicyData->end_date,
@@ -88,7 +90,7 @@ class AssetController extends Controller
     }
 
     public function index() {
-        $breadcrumbs = [["name" => "Configuración", "href" => "/admin/assets/index"]];
+        $breadcrumbs = [["name" => "Activos", "href" => "/admin/assets/index"]];
         return Inertia::render('Admin/Assets/Index', ['breadcrumbs' => $breadcrumbs]);
 
     }

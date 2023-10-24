@@ -12,7 +12,7 @@ import { Head } from '@inertiajs/vue3';
                     <h1 class="font-bold ml-2 text-xl">{{ assets_type.name }}</h1>
                     <button type="button" @click="showModal('createAttribute')"
                         class="text-white bg-indigo-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
-                        Añadir Atributo 
+                        Añadir Atributo
                         <i class="ml-2 fa-solid fa-plus font-xl"></i>
                     </button>
                 </div>
@@ -37,8 +37,7 @@ import { Head } from '@inertiajs/vue3';
                         <tbody>
                             <tr v-for="(attribute, index) in assets_type.attributes"
                                 class="bg-white border-b   hover:bg-gray-50 ">
-                                <th scope="row"
-                                    class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
+                                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
                                     <i class="fa-solid fa-passport text-3xl text-indigo-600"></i>
                                     <div class="pl-3">
                                         <div class="text-base font-semibold">{{ attribute.name }}</div>
@@ -51,10 +50,7 @@ import { Head } from '@inertiajs/vue3';
                                     {{ attribute.example }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <i @click="showModal('editDocumentType' + assets_type.id)"
-                                        class="fa-solid fa-square-pen text-3xl text-yellow-500 cursor-pointer ml-2"></i>
-                                    <Edit :id="'editDocumentType' + assets_type.id" :assets_type="assets_type" />
-                                    <i @click="deleteDocumentType(assets_type.id)"
+                                    <i @click="deleteAttribute(attribute.id)"
                                         class="fa-solid fa-square-xmark text-3xl text-red-500 cursor-pointer ml-2"></i>
                                 </td>
                             </tr>
@@ -69,6 +65,7 @@ import { Head } from '@inertiajs/vue3';
 <script>
 import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
 import Create from './Create.vue';
+import axios from 'axios';
 export default {
     components: {
         Create,
@@ -86,6 +83,15 @@ export default {
             modal.classList.remove('slide-out-bck-center');
             modal.classList.remove('no-display');
         },
+        deleteAttribute(id) {
+            axios.post('/admin/delete_assets_type_attribute/' + id)
+                .then(response => {
+                    location.reload();
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
     },
     mounted() {
     },
