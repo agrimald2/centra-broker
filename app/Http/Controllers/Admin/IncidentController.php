@@ -94,8 +94,24 @@ class IncidentController extends Controller
                             ->with('asset.assetType')
                             ->with('asset.insurancePolicyData.insurancePolicy')
                             ->with('asset.insurancePolicyData.insuranceCompany')
+                            ->with('asset.assetsAttributesData')
                             ->get();
-        return response()->json(['incidents' => $incidents]);
+    
+        $formattedIncidents = [];
+        foreach ($incidents as $incident) {
+            $assetAttributes = [];
+            foreach ($incident->asset->assetsAttributesData as $attribute) {
+                $assetAttributes[] = [
+                    'name' => $attribute->assetsTypesAttribute->name,
+                    'value' => $attribute->value
+                ];
+            }
+    
+            $incident->asset->attributes = $assetAttributes;
+            $formattedIncidents[] = $incident;
+        }
+    
+        return response()->json(['incidents' => $formattedIncidents]);
     }
 
     public function show($id){

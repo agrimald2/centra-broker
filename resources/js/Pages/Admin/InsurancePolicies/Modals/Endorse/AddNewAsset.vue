@@ -43,7 +43,7 @@
                             </div>
                             <div class="sm:col-span-3">
                                 <label for="name" class="block mb-2 text-md font-bold text-gray-900 ">
-                                    Fin de Vigencia
+                                    Inicio de Vigencia
                                 </label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">

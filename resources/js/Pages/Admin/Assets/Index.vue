@@ -130,7 +130,7 @@ import { Head } from '@inertiajs/vue3';
                                 <table class="w-full text-sm text-left text-gray-500 table">
                                     <tbody>
                                         <tr v-for="attribute in asset.attributes"
-                                            class="text-xs text-gray-700 uppercase bg-gray-100">
+                                            class="text-xs text-gray-700 uppercase bg-gray-100 border">
                                             <th scope="row" class="px-3 py-1 text-center">
                                                 {{ attribute.name }}
                                             </th>

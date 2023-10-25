@@ -10,7 +10,7 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
         <div class="py-2 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-12 border-b pb-5 border-gray-900/10">
             <div class="sm:col-span-4 col-span-12">
                 <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">
-                    Tipo de Activo
+                    Buscar x Tipo de Activo
                     <!-- Add People Modal-->
                     <button type="button" disabled
                         class="ml-2 text-white bg-gray-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-2 py-2 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">

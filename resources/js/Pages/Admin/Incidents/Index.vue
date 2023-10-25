@@ -22,6 +22,13 @@ import { Head } from '@inertiajs/vue3';
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Nombre | N° Doc" required>
                     </div>
+                    <div class="mt-4 mx-2 pt-5 w-full sm:w-auto">
+                        <button type="button" @click="exportToExcel()"
+                            class="text-white bg-green-800 hover:bg-[#050708]/80 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center  dark:focus:ring-gray-600 mr-2 mb-2">
+                            <span class="hidden md:flex"> Excel</span>
+                            <i class="ml-2 fa-solid fa-file-excel font-xl"></i>
+                        </button>
+                    </div>
                 </div>
                 <!-- 
                 <a href="/admin/insurance_policies/create"
@@ -96,7 +103,7 @@ import { Head } from '@inertiajs/vue3';
                                 {{ incident.last_incident_history.incident_date }}
                             </td>
                             <td class="px-6 py-4">
-                                <a :href="'/admin/incidents/show/'+ incident.id">
+                                <a :href="'/admin/incidents/show/' + incident.id">
                                     <i class="fa-solid fa-eye text-3xl text-indigo-600 cursor-pointer ml-2"></i>
                                 </a>
                             </td>
@@ -170,6 +177,73 @@ export default {
                 console.log(error);
             }
             this.loading = false;
+        },
+        formatIncidents() {
+            if (!this.incidents || !this.incidents.length) return [];
+            const formattedIncidents = this.incidents.map(incident => {
+                let formattedIncident = {
+                    "N° Siniestro": incident.incident_number,
+                    "N° Caso": incident.case_number,
+                    "Cliente": incident.asset.insurance_policy_data.customer_id,
+                    "N° Poliza": incident.asset.insurance_policy_data.insurance_policy.number,
+                    "Compañia": incident.asset.insurance_policy_data.insurance_company.name,
+                    "Tipo Activo": incident.asset.asset_type.name,
+                    "Valor As.": incident.insured_amount,
+                    "Prima Neta": 'A',
+                    "F. Siniestro": incident.last_incident_history.incident_date,
+                    "Conductor": incident.last_incident_history.driver,
+                    "Lugar de Ocurrencia": incident.last_incident_history.place,
+                    "¿Banco?": incident.last_incident_history.is_bank_endorsed,
+                    "Banco": incident.last_incident_history.bank_id,
+                    "Denuncia": incident.last_incident_history.police_conclusion,
+                    "Resumen": incident.last_incident_history.summary,
+                    "Taller": incident.last_incident_history.workshop_id,
+                    "F. Taller": incident.last_incident_history.workshop_entrance_date,
+                    "F. Aprob Presupuesto": incident.last_incident_history.budged_approval_date,
+                    "Ejecutivo": incident.last_incident_history.executive,
+                };
+                if (incident.asset.attributes && incident.asset.attributes.length) {
+                    incident.asset.attributes.forEach(attr => {
+                        formattedIncident[attr.name] = attr.value;
+                    });
+                }
+                return formattedIncident;
+            });
+            console.dir(formattedIncidents);
+            return formattedIncidents;
+        },
+        exportToExcel() {
+            const exportData = this.formatIncidents();
+            console.table(exportData);
+            if (!exportData || !exportData.length) return;
+            const csvData = this.toCsv(exportData);
+
+            const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.setAttribute("href", url);
+            link.setAttribute("download", "ReporteDeIncidentes.csv");
+            document.body.appendChild(link);
+            link.click();
+        },
+        toCsv(data) {
+            if (!data || !data.length) return '';
+            const delimiter = ",";
+            const keys = Object.keys(data[0]);
+
+            const headerRow = keys.join(delimiter) + "\n";
+            const bodyRows = data
+                .map((row) => {
+                    return keys
+                        .map((key) => {
+                            return '"' + row[key] + '"';
+                        })
+                        .join(delimiter);
+                })
+                .join("\n");
+
+            return headerRow + bodyRows;
         },
     },
     mounted() {
