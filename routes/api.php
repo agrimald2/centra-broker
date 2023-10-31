@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UtilitiesController;
+use App\Http\Controllers\Admin\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +39,6 @@ Route::get('/insurance_policy_test', [UtilitiesController::class, 'getInsuranceP
 Route::get('/search_assets', [UtilitiesController::class, 'getAssetByAttributeValue']);
 Route::get('/assets_types_attributes', [UtilitiesController::class, 'getAssetsTypesAttributes']);
 Route::get('/assets_types_attributes_data', [UtilitiesController::class, 'getAssetsTypesAttributes']);
+
+
+Route::get('/stadistics', [DashboardController::class, 'getStatistics']);

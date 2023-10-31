@@ -218,7 +218,7 @@ import FilesDrop from './FilesDrop.vue';
                         <i class="ml-2 fa-solid fa-plus font-xl"></i>
                     </button>
                     <AddNewAsset :id="'NewAsset'" @asset-added="handleNewAsset"
-                        :policy_vigency_date="insurance_policy.insurance_policy_data.end_date" />
+                        :policy_vigency_date="insurance_policy.insurance_policy_data.start_date " />
                     <div class="sm:col-span-3">
                         <table class="w-full text-sm text-left text-gray-500"
                             v-if="insurance_policy.insurance_policy_data.assets.length > 0">

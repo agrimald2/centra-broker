@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\GeneralSetting;
 use App\Models\AssetsAttributesData;
+use Log;
 
 class Asset extends Model
 {
@@ -60,7 +61,7 @@ class Asset extends Model
         if ($this->insurancePolicyData) {
             return $this->insured_amount * ($this->insurancePolicyData->risk_rate/100);
         }
-        return 0; // or any other default value
+        return 2.8; // or any other default value
     }
 
     public function netComercial()
