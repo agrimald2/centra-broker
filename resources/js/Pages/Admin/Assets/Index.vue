@@ -218,7 +218,7 @@ export default {
             if (!this.assets || !this.assets.length) return [];
             const formattedAssets = this.assets.map(asset => {
                 let formattedAsset = {
-                    "Nro Póliza": asset.insurance_policy_number,
+                    "Nro Poliza": asset.insurance_policy_number,
                     "Inicio Vigencia": asset.start_date,
                     "Fin Vigencia": asset.end_date,
                     "Nombre Cliente": asset.customer_name,
@@ -226,7 +226,7 @@ export default {
                     "Personas aseguradas": asset.insuranced_people,
                     "Tasa de riesgo": asset.risk_rate,
                     "Valor asegurado": asset.insuranced_amount,
-                    "Comisión %": asset.comission
+                    "Comision %": asset.comission
                 };
                 if (asset.attributes && asset.attributes.length) {
                     asset.attributes.forEach(attr => {

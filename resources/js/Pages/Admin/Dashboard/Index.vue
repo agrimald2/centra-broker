@@ -65,16 +65,20 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                     <dd class="text-gray-500 dark:text-gray-400">Activos</dd>
                 </div>
                 <div class="flex flex-col bg-purple-100 p-4 rounded-lg shadow-lg">
-                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_comission }}</dt>
+                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_comission ? stadistics.policies_total_comission.toFixed(2) : 0 }}</dt>
                     <dd class="text-gray-500 dark:text-gray-400">Comisión</dd>
                 </div>
                 <div class="flex flex-col bg-red-100 p-4 rounded-lg shadow-lg">
-                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_net_premium }}</dt>
+                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_net_premium ? stadistics.policies_total_net_premium.toFixed(2) : 0}}</dt>
                     <dd class="text-gray-500 dark:text-gray-400">Prima Neta</dd>
                 </div>
                 <div class="flex flex-col bg-indigo-100 p-4 rounded-lg shadow-lg">
-                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.assets_total }}</dt>
+                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_net ? stadistics.policies_total_net.toFixed(2) : 0 }}</dt>
                     <dd class="text-gray-500 dark:text-gray-400">Prima Total</dd>
+                </div>
+                <div class="flex flex-col bg-gray-100 p-4 rounded-lg shadow-lg">
+                    <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.customers_total }}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Clientes</dd>
                 </div>
             </dl>
         </div>

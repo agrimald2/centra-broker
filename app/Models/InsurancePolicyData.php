@@ -84,7 +84,7 @@ class InsurancePolicyData extends Model
 
     public function totalComission()
     {
-        if ($this->comission_type_id == 2) { // Numeric commission type
+        if ($this->comission_type_id == 2) {
             return $this->comission;
         } else {
             return $this->assets->sum(function ($asset) {
@@ -95,12 +95,19 @@ class InsurancePolicyData extends Model
 
     public function netPremiumTotal()
     {
-        if ($this->comission_type_id == 2) { // Numeric commission type
+        if ($this->comission_type_id == 2) { 
             return $this->comission;
         } else {
             return $this->assets->sum(function ($asset) {
                 return $asset->netPremium();
             });
         }
+    }
+    
+    public function netTotal()
+    {
+        return $this->assets->sum(function ($asset) {
+            return $asset->netTotal();
+        });
     }
 }
