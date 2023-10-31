@@ -23,7 +23,8 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                         </svg>
                     </div>
-                    <input type="date" style="background-color: white;" v-model="filter.start_date" @change="fetchStadistics()"
+                    <input type="date" style="background-color: white;" v-model="filter.start_date"
+                        @change="fetchStadistics()"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Select date">
                 </div>
@@ -40,7 +41,8 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                                 d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
                         </svg>
                     </div>
-                    <input type="date" style="background-color: white;" v-model="filter.end_date" @change="fetchStadistics()"
+                    <input type="date" style="background-color: white;" v-model="filter.end_date"
+                        @change="fetchStadistics()"
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Select date">
                 </div>
@@ -50,25 +52,29 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
             aria-labelledby="statistics-tab">
             <dl
                 class="grid max-w-screen-xl grid-cols-1 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-2 xl:grid-cols-3 dark:text-white sm:p-8 text-center">
-                <div class="flex flex-col">
-                    <dt class="mb-2 text-3xl font-extrabold">{{stadistics.policies_total_number}} #</dt>
+                <div class="flex flex-col bg-blue-100 p-4 rounded-lg shadow-lg">
+                    <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.policies_total_number }} </dt>
                     <dd class="text-gray-500 dark:text-gray-400">Polizas</dd>
                 </div>
-                <div class="flex flex-col">
-                    <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.policies_total_comission }} $</dt>
-                    <dd class="text-gray-500 dark:text-gray-400">Comisión</dd>
-                </div>
-                <div class="flex flex-col">
-                    <dt class="mb-2 text-3xl font-extrabold">{{stadistics.policies_total_net_premium}} $</dt>
-                    <dd class="text-gray-500 dark:text-gray-400">Prima Neta</dd>
-                </div>
-                <div class="flex flex-col">
-                    <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.incidents_total }} #</dt>
+                <div class="flex flex-col bg-green-100 p-4 rounded-lg shadow-lg">
+                    <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.incidents_total }} </dt>
                     <dd class="text-gray-500 dark:text-gray-400">Siniestros</dd>
                 </div>
-                <div class="flex flex-col">
-                    <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.assets_total }} #</dt>
+                <div class="flex flex-col bg-yellow-100 p-4 rounded-lg shadow-lg">
+                    <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.assets_total }} </dt>
                     <dd class="text-gray-500 dark:text-gray-400">Activos</dd>
+                </div>
+                <div class="flex flex-col bg-purple-100 p-4 rounded-lg shadow-lg">
+                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_comission }}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Comisión</dd>
+                </div>
+                <div class="flex flex-col bg-red-100 p-4 rounded-lg shadow-lg">
+                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_net_premium }}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Prima Neta</dd>
+                </div>
+                <div class="flex flex-col bg-indigo-100 p-4 rounded-lg shadow-lg">
+                    <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.assets_total }}</dt>
+                    <dd class="text-gray-500 dark:text-gray-400">Prima Total</dd>
                 </div>
             </dl>
         </div>
@@ -103,10 +109,10 @@ export default {
         this.fetchStadistics();
     },
     watch: {
-        'filter.start_date': function(newVal, oldVal) {
+        'filter.start_date': function (newVal, oldVal) {
             this.fetchStadistics();
         },
-        'filter.end_date': function(newVal, oldVal) {
+        'filter.end_date': function (newVal, oldVal) {
             this.fetchStadistics();
         }
     }
