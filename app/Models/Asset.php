@@ -87,4 +87,9 @@ class Asset extends Model
     {
         return $this->hasMany(Incident::class);
     }
+
+    public function riskType()
+    {
+        return $this->belongsTo(RiskType::class);
+    }
 }
