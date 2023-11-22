@@ -27,7 +27,7 @@ class SendInsurancePolicyExpiryNotification extends Command
                 $emailBody = "La poliza está por vencer. Revísala aquí: {$appUrl}/admin/insurance_policies/show/{$policyId}";
                 Mail::raw($emailBody, function ($message) {
                     $message->to('recipient@example.com')
-                            ->subject('Insurance Policy Expiry Notification');
+                            ->subject('Aviso de Vencimiento de Poliza');
                 });
             }
         }
