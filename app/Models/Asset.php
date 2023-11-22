@@ -19,6 +19,8 @@ class Asset extends Model
         'insured_amount',
         'insuranced_people',
         'vigency_date',
+        'insured_amount_type',
+        'risk_rate',
     ];
 
     public function assetType()

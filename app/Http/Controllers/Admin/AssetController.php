@@ -31,11 +31,11 @@ class AssetController extends Controller
     }
 
     public function getAssets(Request $request){
-        Log::debug($request);
-        // Get the Assets with the relations
+        // Get the Assets with the relations including assetType
         $assets = Asset::with('insurancePolicyData.insurancePolicy')
         ->with('insurancePolicyData.customer')
-        ->with('assetsAttributesData.assetsTypesAttribute');
+        ->with('assetsAttributesData.assetsTypesAttribute')
+        ->with('assetType');
 
         // filter by type
         if($request->has('type')){
@@ -64,13 +64,14 @@ class AssetController extends Controller
         
             foreach ($asset->assetsAttributesData as $attribute) {
                 $assetAttributes[] = [
-                    'name' => $attribute->assetsTypesAttribute->name,
-                    'value' => $attribute->value
+                    'name' => $attribute->assetsTypesAttribute ? $attribute->assetsTypesAttribute->name : '',
+                    'value' => $attribute->value ? $attribute->value : ''
                 ];
             }
         
             $formattedAssets[] = [
                 'id' => $asset->id,
+                'asset_type' => $asset->assetType->name,
                 'insurance_policy_id' => $asset->insurancePolicyData->insurancePolicy->id,
                 'insurance_policy_number' => $asset->insurancePolicyData->insurancePolicy->number,
                 'start_date' => $asset->insurancePolicyData->start_date,
@@ -79,13 +80,16 @@ class AssetController extends Controller
                 'customer_document' => $asset->insurancePolicyData->customer->document_number,
                 'insuranced_people' => $asset->insuranced_people,
                 'attributes' => $assetAttributes,
-                'risk_rate' => $asset->insurancePolicyData->risk_rate,
+                'risk_rate' => $asset->risk_rate,
                 'insuranced_amount' => $asset->insured_amount,
+                'insuranced_amount_type' => $asset->insured_amount_type,
                 'comission' => $asset->insurancePolicyData->comission,
+                'netPremium' => $asset->netPremium(),
+                'netTotal' => $asset->netTotal(),
             ];
         }
        
-
+        Log::debug($formattedAssets);
         return response()->json($formattedAssets);
     }
 

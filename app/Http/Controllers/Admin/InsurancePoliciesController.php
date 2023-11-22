@@ -383,6 +383,7 @@ class InsurancePoliciesController extends Controller
     
     private function createAssets($insurancePolicyData, $assets)
     {  
+        Log::debug($assets);
         $policyDataId = $insurancePolicyData->id;
         foreach ($assets as $assetData) {
             // Check if the asset has an ID, if it does, update the asset, otherwise create a new one
@@ -392,8 +393,10 @@ class InsurancePoliciesController extends Controller
                     'insurance_policy_data_id' => $policyDataId,
                     'asset_type_id' => $assetData['asset_type_id'],
                     'insured_amount' => $assetData['insured_amount'],
+                    'insured_amount_type' => isset($assetData['insured_amount_type']) ? $assetData['insured_amount_type'] : 'USD',
+                    'risk_rate' => isset($assetData['risk_rate']) ? $assetData['risk_rate'] : 0,
                     'vigency_date' => $assetData['vigency_date'],
-                    'insuranced_people' => $assetData['insuranced_people']
+                    'insuranced_people' => isset($assetData['insuranced_people']) ? $assetData['insuranced_people'] : ''
                 ]
             );
             // If the asset data has attributes, create them
@@ -451,9 +454,11 @@ class InsurancePoliciesController extends Controller
                 $asset->update([
                     'insurance_policy_data_id' => $policyDataId,
                     'asset_type_id' => $assetData['asset_type_id'],
-                    'insured_amount' => $assetData['insured_amount'],
+                    'insured_amount_type' => isset($assetData['insured_amount_type']) ? $assetData['insured_amount_type'] : 'USD',
+                    'risk_rate' => isset($assetData['risk_rate']) ? $assetData['risk_rate'] : 0,
+                    'risk_rate' => $assetData['risk_rate'],
                     'vigency_date' => $assetData['vigency_date'],
-                    'insuranced_people' => $assetData['insuranced_people']
+                    'insuranced_people' => isset($assetData['insuranced_people']) ? $assetData['insuranced_people'] : ''
                 ]);
        
                 // If the asset has been deleted, then delete it using soft deletes
@@ -465,9 +470,11 @@ class InsurancePoliciesController extends Controller
                 $asset = Asset::create([
                     'insurance_policy_data_id' => $policyDataId,
                     'asset_type_id' => $assetData['asset_type_id'],
-                    'insured_amount' => $assetData['insured_amount'],
+                    'insured_amount_type' => isset($assetData['insured_amount_type']) ? $assetData['insured_amount_type'] : 'USD',
+                    'risk_rate' => isset($assetData['risk_rate']) ? $assetData['risk_rate'] : 0,
+                    'risk_rate' => $assetData['risk_rate'],
                     'vigency_date' => $assetData['vigency_date'],
-                    'insuranced_people' => $assetData['insuranced_people']
+                    'insuranced_people' => isset($assetData['insuranced_people']) ? $assetData['insuranced_people'] : ''
                 ]);
 
                 // If the asset data has attributes and the asset is not deleted, update them

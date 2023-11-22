@@ -76,6 +76,9 @@ import { Head } from '@inertiajs/vue3';
                                 N° Poliza
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                Tipo
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Inicio Vigencia
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -109,6 +112,9 @@ import { Head } from '@inertiajs/vue3';
                                     </button>
                                 </div>
                             </th>
+                            <td class="px-6 py-4">
+                                {{ asset.asset_type }}
+                            </td>
                             <td class="px-6 py-4">
                                 {{ asset.start_date }}
                             </td>
@@ -226,7 +232,11 @@ export default {
                     "Personas aseguradas": asset.insuranced_people,
                     "Tasa de riesgo": asset.risk_rate,
                     "Valor asegurado": asset.insuranced_amount,
-                    "Comision %": asset.comission
+                    "Moneda": asset.insuranced_amount_type,
+                    "Comision %": asset.comission,
+                    "Comision Total": asset.comission/100 * asset.insuranced_amount,
+                    "Prima Neta": asset.netPremium,
+                    "Prima Total": asset.netTotal ,
                 };
                 if (asset.attributes && asset.attributes.length) {
                     asset.attributes.forEach(attr => {

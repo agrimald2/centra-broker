@@ -52,15 +52,15 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
             aria-labelledby="statistics-tab">
             <dl
                 class="grid max-w-screen-xl grid-cols-1 gap-8 p-4 mx-auto text-gray-900 sm:grid-cols-2 xl:grid-cols-3 dark:text-white sm:p-8 text-center">
-                <div class="flex flex-col bg-blue-100 p-4 rounded-lg shadow-lg">
+                <div class="flex flex-col bg-blue-100 p-4 rounded-lg shadow-lg cursor-pointer" @click="goTo('/admin/insurance_policies')">
                     <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.policies_total_number }} </dt>
                     <dd class="text-gray-500 dark:text-gray-400">Polizas</dd>
                 </div>
-                <div class="flex flex-col bg-green-100 p-4 rounded-lg shadow-lg">
+                <div class="flex flex-col bg-green-100 p-4 rounded-lg shadow-lg cursor-pointer" @click="goTo('/admin/incidents')">
                     <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.incidents_total }} </dt>
                     <dd class="text-gray-500 dark:text-gray-400">Siniestros</dd>
                 </div>
-                <div class="flex flex-col bg-yellow-100 p-4 rounded-lg shadow-lg">
+                <div class="flex flex-col bg-yellow-100 p-4 rounded-lg shadow-lg cursor-pointer" @click="goTo('/admin/assets/index')">
                     <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.assets_total }} </dt>
                     <dd class="text-gray-500 dark:text-gray-400">Activos</dd>
                 </div>
@@ -106,8 +106,11 @@ export default {
                 params: this.filter
             });
             this.stadistics = response.data;
-        }
+        },
 
+        goTo(route) {
+            window.location.href = route;
+        }
     },
     mounted() {
         this.fetchStadistics();

@@ -102,8 +102,8 @@ class IncidentController extends Controller
             $assetAttributes = [];
             foreach ($incident->asset->assetsAttributesData as $attribute) {
                 $assetAttributes[] = [
-                    'name' => $attribute->assetsTypesAttribute->name,
-                    'value' => $attribute->value
+                    'name' => $attribute->assetsTypesAttribute ? $attribute->assetsTypesAttribute->name : null,
+                    'value' => $attribute->value ? $attribute->value : null
                 ];
             }
     
@@ -111,6 +111,7 @@ class IncidentController extends Controller
             $formattedIncidents[] = $incident;
         }
     
+        Log::debug($formattedIncidents);
         return response()->json(['incidents' => $formattedIncidents]);
     }
 
