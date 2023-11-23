@@ -76,7 +76,7 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                     <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_net ? stadistics.policies_total_net.toFixed(2) : 0 }}</dt>
                     <dd class="text-gray-500 dark:text-gray-400">Prima Total</dd>
                 </div>
-                <div class="flex flex-col bg-gray-100 p-4 rounded-lg shadow-lg">
+                <div class="flex flex-col bg-gray-100 p-4 rounded-lg shadow-lg cursor-pointer" @click="goTo('/admin/customers')">
                     <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.customers_total }}</dt>
                     <dd class="text-gray-500 dark:text-gray-400">Clientes</dd>
                 </div>
