@@ -75,7 +75,7 @@ import { Head } from '@inertiajs/vue3';
                             class="bg-white border-b   hover:bg-gray-50 ">
                             <th scope="row"
                                 class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
-                                <img src="https://i.ibb.co/Y8MbCRj/igor.jpg" alt=""
+                                <img src="https://cdn-icons-png.flaticon.com/128/552/552721.png" alt=""
                                     class="h-10 w-10 rounded-full border-2 border-blue-600">
                                 <div class="pl-3">
                                     <div class="text-base font-semibold">{{ customer.name }}</div>
