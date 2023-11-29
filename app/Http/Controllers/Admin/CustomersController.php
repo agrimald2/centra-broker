@@ -51,8 +51,8 @@ class CustomersController extends Controller
             'address' => 'required|string',
             'email' => 'required|string|email|max:255',
             'document_number' => 'nullable|string',
-            'document_type_id' => 'nullable|exists:document_types,id',
-            'customer_type_id' => 'nullable|exists:document_types,id',
+            'document_type_id' => 'required',
+            'customer_type_id' => 'required',
             'phone_number' => 'nullable|string',
         ]);
 
