@@ -49,7 +49,7 @@ class CustomersController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'address' => 'required|string',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'document_number' => 'nullable|string',
             'document_type_id' => 'nullable|exists:document_types,id',
             'customer_type_id' => 'nullable|exists:document_types,id',
