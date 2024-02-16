@@ -77,7 +77,7 @@
                                         placeholder="23,000">
                                 </div>
                             </div>
-                            <div class="sm:col-span-6">
+                            <div class="sm:col-span-4">
                                 <label for="name" class="block mb-2 text-md font-bold text-gray-900 ">
                                     Inicio de Vigencia
                                 </label>
@@ -87,6 +87,19 @@
                                     </div>
                                     <input type="date" v-model="vigency_date"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="name" class="block mb-2 text-md font-bold text-gray-900 ">
+                                    Ajustar ({{ getNetPremium }} {{ insured_amount_type }})
+                                </label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                                        <i class="fa-solid fa-sack-dollar"></i>
+                                    </div>
+                                    <input type="number" v-model="fix_net_premium"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5    dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="23,000">
                                 </div>
                             </div>
                         </div>
@@ -205,6 +218,7 @@
 <script>
 import axios from 'axios';
 import CreateAssetsTypeAttributes from '../../AssetsTypes/AssetsTypesAttributes/Create.vue'
+import { formToJSON } from 'axios';
 export default {
     components: {},
     props: ['id', 'policy_vigency_date', 'policy_risk_rate'],
@@ -214,6 +228,7 @@ export default {
             assets_types: [],
             asset_type: null,
             insured_amount: null,
+            fix_net_premium: 0,
             insured_amount_type: 'USD',
             risk_rate: this.policy_risk_rate,
             vigency_date: this.policy_vigency_date,
@@ -239,6 +254,7 @@ export default {
                     asset_type_id: this.asset_type.id,
                     asset_type_name: this.asset_type.name,
                     insured_amount: this.insured_amount,
+                    fix_net_premium: this.fix_net_premium,
                     insured_amount_type: this.insured_amount_type,
                     risk_rate: this.risk_rate,
                     vigency_date: this.vigency_date,
@@ -251,6 +267,7 @@ export default {
                 this.asset_type_id = '';
                 this.asset_type_name = '';
                 this.insured_amount = '';
+                this.fix_net_premium = '';
                 this.insuranced_people = '';
                 this.insured_amount_type = 'USD';
                 this.risk_rate = '';
@@ -297,6 +314,11 @@ export default {
                 // handle error (e.g., show error message)
             }
         },
+
+        getNetPremium() {
+            let calculated_net_premium = this.insured_amount * this.risk_rate / 100;
+            return calculated_net_premium + this.fix_net_premium;
+        }
     },
     mounted() {
         this.getAssetsTypes();
@@ -309,6 +331,12 @@ export default {
             handler(newDate) {
                 this.vigency_date = newDate;
             }
+        }
+    },
+    computed: {
+        getNetPremium() {
+            let calculated_net_premium = this.insured_amount * this.risk_rate / 100;
+            return calculated_net_premium + this.fix_net_premium;
         }
     }
 }

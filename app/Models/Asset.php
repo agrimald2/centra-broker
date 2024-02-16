@@ -21,6 +21,7 @@ class Asset extends Model
         'vigency_date',
         'insured_amount_type',
         'risk_rate',
+        'fix_net_premium',
     ];
 
     public function assetType()
@@ -61,7 +62,9 @@ class Asset extends Model
          * Insuranced_amount * risk_rate
         */
         if ($this->insurancePolicyData) {
-            return $this->insured_amount * ($this->insurancePolicyData->risk_rate/100);
+            $calculated_net_premium = $this->insured_amount * ($this->insurancePolicyData->risk_rate/100);
+            $fix_net_premium = $this->fix_net_premium;
+            return $calculated_net_premium + $fix_net_premium;
         }
         return 2.8; // or any other default value
     }

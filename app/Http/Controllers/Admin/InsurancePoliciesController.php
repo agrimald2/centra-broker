@@ -393,6 +393,7 @@ class InsurancePoliciesController extends Controller
                     'insurance_policy_data_id' => $policyDataId,
                     'asset_type_id' => $assetData['asset_type_id'],
                     'insured_amount' => $assetData['insured_amount'],
+                    'fix_net_premium' => $assetData['fix_net_premium'],
                     'insured_amount_type' => isset($assetData['insured_amount_type']) ? $assetData['insured_amount_type'] : 'USD',
                     'risk_rate' => isset($assetData['risk_rate']) ? $assetData['risk_rate'] : 0,
                     'vigency_date' => $assetData['vigency_date'],
