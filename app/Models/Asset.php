@@ -64,9 +64,12 @@ class Asset extends Model
         if ($this->insurancePolicyData) {
             $calculated_net_premium = $this->insured_amount * ($this->insurancePolicyData->risk_rate/100);
             $fix_net_premium = $this->fix_net_premium;
-            return $calculated_net_premium + $fix_net_premium;
+            if($fix_net_premium != $calculated_net_premium ){
+                return $fix_net_premium;
+            }
+            return $calculated_net_premium;
         }
-        return 2.8; // or any other default value
+
     }
 
     public function netComercial()

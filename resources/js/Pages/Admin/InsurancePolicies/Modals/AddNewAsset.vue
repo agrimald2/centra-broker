@@ -91,7 +91,7 @@
                             </div>
                             <div class="sm:col-span-2">
                                 <label for="name" class="block mb-2 text-md font-bold text-gray-900 ">
-                                    Ajustar ({{ getNetPremium }} {{ insured_amount_type }})
+                                        Prima Neta ({{ getNetPremium }} {{ insured_amount_type }})
                                 </label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
@@ -336,7 +336,8 @@ export default {
     computed: {
         getNetPremium() {
             let calculated_net_premium = this.insured_amount * this.risk_rate / 100;
-            return calculated_net_premium + this.fix_net_premium;
+            this.fix_net_premium = calculated_net_premium;
+            return calculated_net_premium;
         }
     }
 }

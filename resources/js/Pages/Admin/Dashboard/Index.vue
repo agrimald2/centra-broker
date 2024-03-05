@@ -64,7 +64,7 @@ import Breadcrumb from '@/Components/Flowbite/Navigation/Breadcrumb.vue';
                     <dt class="mb-2 text-3xl font-extrabold">{{ stadistics.assets_total }} </dt>
                     <dd class="text-gray-500 dark:text-gray-400">Activos</dd>
                 </div>
-                <div class="flex flex-col bg-purple-100 p-4 rounded-lg shadow-lg">
+                <div class="flex flex-col bg-purple-100 p-4 rounded-lg shadow-lg cursor-pointer" @click="goTo('/admin/assets/index')">
                     <dt class="mb-2 text-3xl font-extrabold">${{ stadistics.policies_total_comission ? stadistics.policies_total_comission.toFixed(2) : 0 }}</dt>
                     <dd class="text-gray-500 dark:text-gray-400">Comisión</dd>
                 </div>
